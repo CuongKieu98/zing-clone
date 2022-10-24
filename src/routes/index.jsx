@@ -11,7 +11,15 @@ const Layout = () => {
     <div className="main-layout">
       <SideBar />
       <Header />
-      <Outlet />
+      <div className="main-page">
+        <div className="wrapper">
+          <main className="page-section">
+            <div className="container">
+              <Outlet />
+            </div>
+          </main>
+        </div>
+      </div>
     </div>
   );
 };
