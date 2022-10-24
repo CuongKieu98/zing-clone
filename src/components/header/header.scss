@@ -1,0 +1,170 @@
+@use "../../scss/" as *;
+
+.header {
+  @include flex(center, unset);
+  position: fixed;
+  left: 240px;
+  top: 0;
+  right: 0;
+  height: 70px;
+  padding: 0 var(--padding-section);
+  z-index: 99;
+  min-width: 660px;
+  &.shrink {
+    background-color: var(--layout-bg);
+  }
+  &__wrap {
+    @include flex(center, space-between); //đưa item nav về 2 bên
+    height: 100%;
+    padding: 0 2rem;
+
+    @include mobile {
+      justify-content: center;
+    }
+  }
+
+  .level {
+    width: 100%;
+  }
+  .level-left {
+    flex-grow: 1;
+    margin-right: 10px;
+    .btn {
+      @include flex(center, unset);
+    }
+  }
+  .search {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    &__container {
+      @include flex(center, space-between);
+      position: relative;
+      border-radius: 20px;
+      height: 40px;
+      background-color: var(--alpha-bg);
+      &.is-copalse {
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%);
+        background-color: var(--primary-bg);
+        border: 1px solid transparent;
+      }
+    }
+
+    .input-wrapper {
+      position: absolute;
+      top: 0;
+      left: 38px;
+      right: 10px;
+      bottom: 0;
+      input {
+        margin: 0;
+        display: inline-block;
+        width: 95%;
+        font-size: 14px !important;
+        color: var(--search-text);
+        background-clip: padding-box;
+        border: 0;
+        position: relative;
+        top: 2px;
+        height: 34px;
+        padding: 5px 0;
+        line-height: 34px;
+        background-color: transparent;
+        word-break: normal;
+        font: inherit;
+        &::placeholder {
+          color: var(--search-text);
+        }
+      }
+    
+    }
+    .spiner{
+      width: 30px;
+    }
+    .suggest__list {
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      z-index: 5;
+      display: block;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 4px 6px 0 rgb(32 33 36 / 28%);
+      padding: 13px 10px;
+      color: var(--text-primary);
+      background-color: var(--primary-bg);
+      &__container {
+        max-height: 300px;
+        overflow-y: auto;
+        .search-title {
+          font-size: 14px;
+          font-weight: 700;
+          padding: 0 10px 8px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      &__item {
+        display: flex;
+        align-items: baseline;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        figure {
+          width: 52px;
+          height: 52px;
+        }
+        &:hover {
+          background-color: var(--alpha-bg);
+          .duration {
+            display: none;
+          }
+          .level__item {
+            display: flex;
+          }
+          .opacity {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 4px;
+            background-color: var(--dark-alpha-50);
+          }
+          .center {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+  .setting-item {
+    position: relative;
+    margin-right: 12px;
+  }
+}
+.container-theme {
+  .theme-modal {
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 16.66667%;
+    @include tablet {
+      width: 33.3333%;
+    }
+    @include mobile {
+      width: 50%;
+    }
+  }
+  .columns {
+    margin: 0;
+  }
+  .title.prl-7 {
+    padding: 0 7px;
+  }
+}

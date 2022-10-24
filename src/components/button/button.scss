@@ -1,0 +1,38 @@
+@use "../../scss/" as *;
+
+.btn {
+  font-size: 14px;
+  border-radius: 999px;
+  line-height: normal;
+  border: 0;
+  display: inline-block;
+  font-weight: 400;
+  text-transform: none;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  background-color: var(--alpha-bg);
+  .icon-btn {
+    line-height: 66%;
+    display: inline-block;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    &.is-hover-circle {
+      background-color: transparent;
+      &:hover {
+        background-color: hsla(0, 0%, 100%, 0.1);
+      }
+    }
+    &.is-hover-square {
+      background-color: transparent;
+      border-radius: 4px !important;
+      &:hover {
+        background-color: hsla(0, 0%, 100%, 0.1);
+      }
+    }
+  }
+  &.no-bg {
+    background-color: transparent;
+  }
+}
