@@ -1,13 +1,22 @@
 import React, { useRef, useState, useEffect } from "react";
 import Button from "../button/Button";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import images from "../../assets/images";
 import "./header.scss";
-import SearchIcon from "@mui/icons-material/Search";
 import { useDebounce } from "../../hooks";
 import { search } from "../../api/musicApi";
+
+//icon
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SearchIcon from "@mui/icons-material/Search";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ColorLensIcon from "@mui/icons-material/ColorLens";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import images from "../../assets/images";
+import SettingsIcon from "@mui/icons-material/Settings";
+import PersonIcon from "@mui/icons-material/Person";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+import { THEME_2, THEME_ARTIST, THEME_DYNAMIC } from "../../consts/THEME";
+import Card from "../card/Card";
+import Modal from "../modal/Modal";
 
 const Header = () => {
   const headerRef = useRef(null);
@@ -27,7 +36,6 @@ const Header = () => {
     inputRef.current.focus();
   };
 
-
   const onFocusInput = (isFocus) => {
     if (isFocus) {
       setIsColapse("is-copalse");
@@ -38,16 +46,13 @@ const Header = () => {
     }
   };
 
-
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
 
-
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
-
 
   const handleClickOutside = (event) => {
     if (inputRef.current && inputRef.current.contains(event.target)) {
@@ -59,7 +64,6 @@ const Header = () => {
     }
   };
 
-
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, !isShow);
     return () => {
@@ -67,7 +71,6 @@ const Header = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 
   useEffect(() => {
     if (!debounced.trim()) {
@@ -86,7 +89,6 @@ const Header = () => {
       });
   }, [debounced]);
 
-  
   return (
     <header ref={headerRef} className="header">
       <div className="level">
@@ -158,8 +160,101 @@ const Header = () => {
             )}
           </form>
         </div>
+        <RightHeader onOpenModal={handleOpenDialog}/>
       </div>
+      <Modal onOpen={openDialog} onClose={handleCloseDialog} title="Giao Diện">
+        <ModalTheme onClose={handleCloseDialog} />
+      </Modal>
     </header>
+  );
+};
+
+const RightHeader = ({onOpenModal}) => {
+  return (
+    <div className="level-right">
+      <div className="setting-item">
+        <Button  onClick={onOpenModal}>
+          <ColorLensIcon
+            sx={{ fontSize: 20, color: "var(--setting-icon-text)" }}
+          />
+        </Button>
+      </div>
+      <div className="setting-item">
+        <Button>
+          <FileUploadOutlinedIcon
+            sx={{ fontSize: 20, color: "var(--setting-icon-text)" }}
+          />
+        </Button>
+      </div>
+      <div className="setting-item hide-on-mobile">
+        <Button
+          className={"bg-circle is-40"}
+          onClick={() => console.log("gaga")}
+        >
+          <SettingsIcon
+            sx={{ fontSize: 20, color: "var(--setting-icon-text)" }}
+          />
+        </Button>
+      </div>
+      <div className="setting-item">
+        <Button
+          className={"bg-circle is-40"}
+          onClick={() => console.log("gaga")}
+        >
+          <PersonIcon
+            sx={{ fontSize: 20, color: "var(--setting-icon-text)" }}
+          />
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+const ModalTheme = ({onClose}) => {
+
+
+  return (
+    <div className="container-theme">
+      <h3 className="title pad-rl-7">Dynamic</h3>
+      <div className="columns">
+        {THEME_DYNAMIC.map((item, i) => (
+          <div className="column theme-modal mb-2" key={i}>
+            <Card
+              image={item.img}
+              className=""
+              customImg=""
+              content={item.title}
+            />
+          </div>
+        ))}
+      </div>
+      <h3 className="title pad-rl-7">Chủ Đề</h3>
+      <div className="columns">
+        {THEME_2.map((item, index) => (
+          <div className="column theme-modal mb-2" key={index}>
+            <Card
+              image={item.img}
+              className=""
+              customImg=""
+              content={item.title}
+            />
+          </div>
+        ))}
+      </div>
+      <h3 className="title prl-7">Nghệ Sĩ</h3>
+      <div className="columns">
+        {THEME_ARTIST.map((item, index) => (
+          <div className="column theme-modal mb-2" key={index}>
+            <Card
+              image={item.img}
+              className=""
+              customImg=""
+              content={item.title}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

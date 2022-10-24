@@ -35,4 +35,8 @@
   &.no-bg {
     background-color: transparent;
   }
+  &:hover{
+    -webkit-filter: brightness(.9);
+    filter: brightness(.9);
+  }
 }

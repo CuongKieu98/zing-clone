@@ -1,6 +1,7 @@
 import { makeApiCall } from "./apiUtils";
 
-const baseUrl = "https://api-music-server.vercel.app/api";
+// const baseUrl = "https://api-music-server.vercel.app/api";
+const baseUrl = "https://api-zing-ver1.herokuapp.com/api";
 
 export function getTop100 () {
     const url = `${baseUrl}/${"top100"}`

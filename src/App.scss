@@ -391,6 +391,20 @@ iframe {
 figure {
   background-color: var(--loading-bg);
 }
+body ::-webkit-scrollbar {
+  width: 4px;
+}
+body ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: hsla(0, 0%, 100%, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 50%);
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 50%);
+}
+body ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset #fff;
+  box-shadow: inset #fff;
+  border-radius: 4px;
+}
 .main-layout {
   display: flex;
   width: 100%;
@@ -424,4 +438,12 @@ figure {
 //padding
 .pd-7{
     padding: 7px;
+}
+
+.columns {
+  display: flex;
+  box-lines: multiple;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 0 -15px;
 }

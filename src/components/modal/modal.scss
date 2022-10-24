@@ -1,0 +1,23 @@
+@use "../../scss/" as *;
+
+.modal-dialog {
+  background-color: var(--primary-bg);
+  .main-title {
+    font-size: 24px;
+    padding: 20px 30px;
+    margin: 0;
+  }
+  .container-modal {
+    max-height: 50vh;
+    min-height: 500px;
+    padding: 0 10px;
+    overflow-y: scroll;
+    padding-bottom: 6rem;
+  }
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  margin: 0;
+}

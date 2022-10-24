@@ -4,6 +4,7 @@ import SideBar from "../components/sideBar/SideBar";
 import Chart from "../pages/Chart";
 import Home from "../pages/Home";
 import "../App.scss";
+import PageNotFound from "../pages/PageNotFound";
 
 const Layout = () => {
   return (
@@ -25,6 +26,7 @@ const publicRoutes = [
         element: <Home />,
       },
     ],
+    errorElement: <PageNotFound />,
   },
   {
     path: "/zing-chart",
