@@ -13,7 +13,7 @@ const Layout = () => {
       <Header />
       <div className="main-page">
         <div className="wrapper">
-          <main className="page-section">
+          <main className="page-section" id="boxm">
             <div className="container">
               <Outlet />
             </div>

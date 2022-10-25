@@ -9,7 +9,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "swiper/css";
 const Slide = (props) => {
   const { items} = props;
-    console.log(items);
   return (
     <div className="slide">
         <div className="slide-container">
@@ -29,7 +28,7 @@ const Slide = (props) => {
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 10,
+            spaceBetween: 0,
           },
         }}
         // autoplay={{

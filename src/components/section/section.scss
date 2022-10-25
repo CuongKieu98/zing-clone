@@ -1,0 +1,140 @@
+@use "../../scss/" as *;
+
+.section {
+  position: relative;
+  margin-bottom: -10px;
+  margin-top: 48px;
+  &__title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    color: var(--text-primary);
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  .new-release {
+    margin-bottom: 16px;
+    .btn {
+      padding: 4px 24px;
+      border: 1px solid var(--border-primary);
+      border-radius: 100px;
+      font-weight: 400;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-right: 15px;
+    }
+  }
+  .columns {
+    height: 321px;
+    min-height: 190px;
+    @include tablet {
+      overflow: auto;
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+    }
+    .column-response {
+      width: 33.33333%;
+      @include tablet {
+        width: 50%;
+      }
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+  .section-playing {
+    display: block;
+    flex: 0 0 100%;
+    max-width: 100%;
+    &__items {
+      display: flex;
+      flex-wrap: nowrap !important;
+      overflow: overlay hidden !important;
+      scroll-behavior: smooth;
+      will-change: scroll-position;
+      .card {
+        flex: 0 0 20%;
+        max-width: 20%;
+        padding-left: 12px;
+        padding-right: 12px;
+        @include tablet {
+          flex: 0 0 25%;
+          max-width: 25%;
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        @include mobile {
+          flex: 0 0 33.33%;
+          max-width: 33.33%;
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+      }
+    }
+
+  }
+  .section-mix {
+    display: block;
+    flex: 0 0 100%;
+    max-width: 100%;
+    &__items {
+      display: flex;
+      flex-wrap: nowrap !important;
+      overflow: overlay hidden !important;
+      scroll-behavior: smooth;
+      will-change: scroll-position;
+      .card {
+        flex: 0 0 20%;
+        max-width: 20%;
+        padding-left: 12px;
+        padding-right: 12px;
+        @include tablet {
+          flex: 0 0 25%;
+          max-width: 25%;
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        @include mobile {
+          flex: 0 0 50%;
+          max-width: 50%;
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+      }
+    }
+    .mix-content {
+      padding: 0 16px;
+      position: absolute;
+      width: 90%;
+      bottom: 16px;
+      .title{
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 29px;
+        white-space: nowrap;
+        color: var(--white);
+        overflow: hidden;
+        margin-bottom: 12px;
+        text-overflow: ellipsis;
+        text-transform: none;
+      }
+      .thumb {
+        margin-top: 12px;
+        display: flex;
+        
+        .thumb-item:not(:last-child) {
+          margin-right: 12px;
+        }
+        figure{
+          cursor: pointer;
+          border-radius: 5px;
+          img{
+            border-radius: 6px;
+          }
+        }
+      }
+    }
+  }
+}

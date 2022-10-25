@@ -1,0 +1,29 @@
+@use "../../scss/" as *;
+
+.list > .list-item {
+  border-bottom: none;
+  &.media-item {
+    border-radius: 4px;
+    &:hover {
+      background-color: var(--alpha-bg);
+      .hover-items {
+        visibility: visible;
+      }
+    }
+    .media-left {
+      display: flex;
+      width: 50%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      .song-thumb {
+        margin-right: 10px;
+        flex-shrink: 0;
+        .btn {
+          font-size: 18px;
+          line-height: 0;
+          height: 18px;
+        }
+      }
+    }
+  }
+}

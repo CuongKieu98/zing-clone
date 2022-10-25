@@ -18,7 +18,6 @@
     position: relative;
     transform-style: preserve-3d;
     perspective: 1000px;
-    margin: 0 -15px 20px;
   }
 }
 .slide-item__content_banner {
@@ -28,11 +27,9 @@
   padding: 0 10px;
   transition: 0.5s ease;
   figure{
-    height: 0;
-    padding-bottom: 56.25%;
     line-height: 0;
     // padding-bottom: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
     overflow: hidden;
     img{
         width: 300px;

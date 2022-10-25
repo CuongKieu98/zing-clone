@@ -12,6 +12,12 @@
   cursor: pointer;
   position: relative;
   background-color: var(--alpha-bg);
+  color: var(--white);
+  &.active{
+    border-color: var(--purple-primary);
+    background-color: var(--purple-primary);
+    color: var(--white);
+  }
   .icon-btn {
     line-height: 66%;
     display: inline-block;

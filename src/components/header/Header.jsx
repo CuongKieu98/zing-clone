@@ -65,6 +65,26 @@ const Header = () => {
   };
 
   useEffect(() => {
+    const shrinkHeader = () => {
+      if (
+        document.getElementsByClassName("page-section")[0]?.scrollTop > 50 ||
+        document.getElementById("boxm")[0]?.scrollTop > 50
+      ) {
+        headerRef.current.classList.add("shrink");
+      } else {
+        headerRef.current.classList.remove("shrink");
+      }
+    };
+
+    document.getElementById("boxm").addEventListener("scroll", shrinkHeader);
+    return () => {
+      document
+        .getElementById("boxm")
+        .removeEventListener("scroll", shrinkHeader);
+    };
+  }, []);
+
+  useEffect(() => {
     document.addEventListener("click", handleClickOutside, !isShow);
     return () => {
       document.removeEventListener("click", handleClickOutside, !isShow);
@@ -223,8 +243,12 @@ const ModalTheme = ({onClose}) => {
               image={item.img}
               className=""
               customImg=""
-              content={item.title}
-            />
+             
+            >
+              <div className="title">
+                {item.title}
+              </div>
+            </Card>
           </div>
         ))}
       </div>
@@ -236,8 +260,12 @@ const ModalTheme = ({onClose}) => {
               image={item.img}
               className=""
               customImg=""
-              content={item.title}
-            />
+
+            >
+               <div className="title">
+                {item.title}
+              </div>
+            </Card>
           </div>
         ))}
       </div>
@@ -250,7 +278,11 @@ const ModalTheme = ({onClose}) => {
               className=""
               customImg=""
               content={item.title}
-            />
+            >
+               <div className="title">
+                {item.title}
+              </div>
+            </Card>
           </div>
         ))}
       </div>
