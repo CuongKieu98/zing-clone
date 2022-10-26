@@ -4,6 +4,12 @@
   border-bottom: none;
   &.media-item {
     border-radius: 4px;
+    &.is-vip {
+      .media-left .title,
+      .media-left .subtitle {
+        opacity: 0.5;
+      }
+    }
     &:hover {
       background-color: var(--alpha-bg);
       .hover-items {

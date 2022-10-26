@@ -1,8 +1,9 @@
 import React from "react";
+import Action from "../action/Action";
 
 import "./card.scss";
 
-const Card = ({ image, className, customClass, onClick, children }) => {
+const Card = ({ image, className, customClass, onClick, children ,isOnlyShowPlay}) => {
   return (
     <div className="card">
       <div
@@ -13,7 +14,7 @@ const Card = ({ image, className, customClass, onClick, children }) => {
           <img src={image} alt="" />
         </figure>
         <div className="opacity"></div>
-        <div className="card__actions"></div>
+        <Action isOnlyShowPlay={isOnlyShowPlay} />
       </div>
       <div className="card__content">{children}</div>
     </div>

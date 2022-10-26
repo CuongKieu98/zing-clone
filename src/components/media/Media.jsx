@@ -5,22 +5,28 @@ import themes from "../../assets/theme";
 import Action from "../action/Action";
 import Button from "../button/Button";
 import "./media.scss";
-
+import "moment/locale/vi";
 //icon
 import MicRoundedIcon from "@mui/icons-material/MicRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
+import moment from "moment";
 
-const Media = ({ customImg, isOnlyShowMore = true, item }) => {
+const Media = ({
+  customImg,
+  isOnlyShowMore = true,
+  item,
+  releaseDate = false,
+}) => {
   return (
-    <div className="media">
-      <MediaLeft sizeImg={customImg} item={item} />
+    <div className="media" >
+      <MediaLeft sizeImg={customImg} item={item} releaseDate={releaseDate} />
       <MediaRight showMore={isOnlyShowMore} item={item} />
     </div>
   );
 };
 
-const MediaLeft = ({ sizeImg, item }) => {
+const MediaLeft = ({ sizeImg, item, releaseDate }) => {
   return (
     <div className="media-left">
       <div className="song-thumb">
@@ -44,9 +50,11 @@ const MediaLeft = ({ sizeImg, item }) => {
           </span>
         </div>
         <h3 className="is-one-line subtitle">{item.artistsNames}</h3>
-        <div className="time-release">
-          <span>1 Ngày Trước</span>
-        </div>
+        {releaseDate && (
+          <div className="time-release">
+            <span>{moment.unix(item.releaseDate).fromNow()}</span>
+          </div>
+        )}
       </div>
     </div>
   );

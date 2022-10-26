@@ -38,6 +38,7 @@ const SideBar = () => {
               >
                 <Link to={item.path} title={item.title}>
                   <i>{item.icon}</i>
+                  
                   <span>{item.title}</span>
                   {item.img && (
                     <img

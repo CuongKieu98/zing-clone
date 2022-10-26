@@ -32,7 +32,7 @@ const NewRelease = ({ data }) => {
           {data &&
             data[0].song.slice(0, 12).map((item, i) => (
               <div className="column-response" key={i}>
-                <List customImg="is-60" isOnlyShowMore={true} item={item} />
+                <List customImg="is-60" isOnlyShowMore={true} item={item} releaseDate={true}/>
               </div>
             ))}
         </div>
@@ -41,7 +41,7 @@ const NewRelease = ({ data }) => {
           {data &&
             data[0].album.slice(0, 12).map((item, i) => (
               <div className="column-response" key={i}>
-                <List customImg="is-60" isOnlyShowMore={true} item={item} />
+                <List customImg="is-60" isOnlyShowMore={true} item={item} releaseDate={true}/>
               </div>
             ))}
         </div>

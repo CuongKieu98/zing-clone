@@ -13,6 +13,7 @@
     color: var(--text-primary);
     font-weight: 700;
     text-transform: capitalize;
+
   }
   .new-release {
     margin-bottom: 16px;
@@ -66,8 +67,8 @@
           padding-right: 12px;
         }
         @include mobile {
-          flex: 0 0 33.33%;
-          max-width: 33.33%;
+          flex: 0 0 40%;
+          max-width: 40%;
           padding-left: 8px;
           padding-right: 8px;
         }
@@ -135,6 +136,9 @@
           }
         }
       }
+    }
+    .action{
+      top: calc(50% - 36px);
     }
   }
 }

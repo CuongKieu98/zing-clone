@@ -2,23 +2,18 @@ import React from "react";
 import Button from "../button/Button";
 import "./action.scss";
 
-//icon
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
-import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
-
 const Action = ({ isOnlyShowPlay = true }) => {
   return (
     <div className="action-container">
       <div className="action">
-        <Button className={isOnlyShowPlay ? "is-hidden" : ""}>
-          <FavoriteBorderRoundedIcon  sx={{ fontSize: 20, color: "var(--setting-icon-text)" }}/>
+        <Button className={isOnlyShowPlay ? "is-hidden" : "no-bg"}>
+          <i className="icon ic-like"></i>
         </Button>
-        <Button>
-          <PlayArrowRoundedIcon sx={{ fontSize: 20, color: "var(--setting-icon-text)" }} />
+        <Button className="no-bg border-circle">
+          <i className="icon action-play ic-svg-play-circle"></i>
         </Button>
-        <Button className={isOnlyShowPlay ? "is-hidden" : ""}>
-          <MoreHorizRoundedIcon sx={{ fontSize: 20, color: "var(--setting-icon-text)" }}/>
+        <Button className={isOnlyShowPlay ? "is-hidden" : "no-bg"}>
+          <i className="icon ic-more"></i>
         </Button>
       </div>
     </div>

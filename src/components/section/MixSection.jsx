@@ -9,7 +9,7 @@ const MixSection = ({ data }) => {
       <div className="section-mix__items">
         {data &&
           data.map((item, i) => (
-            <Card key={i} image={item.thumbnailM || item.thumbnail}>
+            <Card key={i} image={item.thumbnailM || item.thumbnail} isOnlyShowPlay={true}>
               <div className="mix-content">
                 <h3 className="title">
                   <span>{item.artistsNames}</span>

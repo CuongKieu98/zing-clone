@@ -7,7 +7,7 @@ const PlayingSection = ({data}) => {
     <div className='section-playing'>
         <div className="section-playing__items">
             {data && data.map((item,i) =>(
-                <Card key={i} image={item.thumbnailM || item.thumbnail} >
+                <Card key={i} image={item.thumbnailM || item.thumbnail} isOnlyShowPlay={false} >
                     <h3 className='title'>
                         <Link to={item.link}>
                             {item.title}

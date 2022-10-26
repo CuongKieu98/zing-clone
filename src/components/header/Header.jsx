@@ -17,6 +17,7 @@ import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { THEME_2, THEME_ARTIST, THEME_DYNAMIC } from "../../consts/THEME";
 import Card from "../card/Card";
 import Modal from "../modal/Modal";
+import moment from "moment";
 
 const Header = () => {
   const headerRef = useRef(null);
@@ -35,6 +36,7 @@ const Header = () => {
     setSearchValue("");
     inputRef.current.focus();
   };
+
 
   const onFocusInput = (isFocus) => {
     if (isFocus) {

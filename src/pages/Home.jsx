@@ -65,11 +65,11 @@ const Home = () => {
         dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.h100)}
       />
 
-          {/* new */}
-          {/* slide */}
+      {/* new */}
+      {/* slide */}
 
-          {/* xone */}
-          <Section
+      {/* xone */}
+      <Section
         type={SECTION_TYPE.playlist}
         dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.hXone)}
       />

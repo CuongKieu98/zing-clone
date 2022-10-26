@@ -15,6 +15,9 @@
       .opacity {
         visibility: visible;
       }
+      .action {
+        visibility: visible;
+      }
       img {
         transform: scale(1.1) translateZ(0);
       }
@@ -27,24 +30,18 @@
         transition: 0.7s ease;
       }
     }
-    &__action {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      bottom: auto;
-      right: auto;
-      z-index: 98;
-      transform: translateX(-50%) translateY(-50%);
-      display: -moz-flex;
+  }
+  .action {
+    width: 100%;
+    justify-content: space-evenly;
+    .btn {
       display: flex;
-      justify-content: space-around;
-      -ms-flex-pack: distribute;
-      align-items: center;
-      -ms-flex-align: center;
-      visibility: hidden;
-      width: 80%;
+      .icon{
+        font-size: 20px;
+      }
     }
   }
+
   &__content {
     padding: 5px 0;
     .title {
@@ -65,6 +62,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
+    @include mobile {
+      font-size: 12px;
+      white-space: unset;
+    }
   }
   h4.subtitle {
     -webkit-line-clamp: 2;
@@ -74,5 +75,8 @@
     font-weight: 400;
     margin-top: 5px;
     font-size: 14px;
+    @include mobile {
+      display: none;
+    }
   }
 }
