@@ -28,7 +28,7 @@ const NewRelease = ({ data }) => {
         </Button>
       </div>
       {tabActive === 1 ? (
-        <div className="columns">
+        <div className="columns border-tb">
           {data &&
             data[0].song.slice(0, 12).map((item, i) => (
               <div className="column-response" key={i}>

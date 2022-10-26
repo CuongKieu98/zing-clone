@@ -13,7 +13,6 @@
     color: var(--text-primary);
     font-weight: 700;
     text-transform: capitalize;
-
   }
   .new-release {
     margin-bottom: 16px;
@@ -30,11 +29,15 @@
   .columns {
     height: 321px;
     min-height: 190px;
+
     @include tablet {
       overflow: auto;
-      border-top: 1px solid;
-      border-bottom: 1px solid;
+      &.border-tb {
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+      }
     }
+
     .column-response {
       width: 33.33333%;
       @include tablet {
@@ -74,7 +77,6 @@
         }
       }
     }
-
   }
   .section-mix {
     display: block;
@@ -110,7 +112,7 @@
       position: absolute;
       width: 90%;
       bottom: 16px;
-      .title{
+      .title {
         font-weight: 800;
         font-size: 18px;
         line-height: 29px;
@@ -124,21 +126,40 @@
       .thumb {
         margin-top: 12px;
         display: flex;
-        
+
         .thumb-item:not(:last-child) {
           margin-right: 12px;
         }
-        figure{
+        figure {
           cursor: pointer;
           border-radius: 5px;
-          img{
+          img {
             border-radius: 6px;
           }
         }
       }
     }
-    .action{
+    .action {
       top: calc(50% - 36px);
+    }
+  }
+  .week-chart-section {
+    margin-top: 28px;
+    margin-bottom: -30px;
+    .columns {
+      height: 100%;
+      min-height: auto;
+      margin: 0 -12px;
+      .column {
+        width: 33.33333%;
+        @include mobile {
+          width: 100%;
+        }
+      }
+      .column {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
     }
   }
 }

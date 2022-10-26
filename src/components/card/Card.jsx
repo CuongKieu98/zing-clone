@@ -3,18 +3,26 @@ import Action from "../action/Action";
 
 import "./card.scss";
 
-const Card = ({ image, className, customClass, onClick, children ,isOnlyShowPlay}) => {
+const Card = ({
+  image,
+  className,
+  customClass,
+  onClick,
+  children,
+  isOnlyShowPlay,
+  showAction = true,
+}) => {
   return (
     <div className="card">
       <div
         className={"card__images " + className}
         onClick={onClick ? onClick : null}
       >
-        <figure>
+        <figure>        
           <img src={image} alt="" />
         </figure>
         <div className="opacity"></div>
-        <Action isOnlyShowPlay={isOnlyShowPlay} />
+        {showAction && <Action isOnlyShowPlay={isOnlyShowPlay} />}
       </div>
       <div className="card__content">{children}</div>
     </div>

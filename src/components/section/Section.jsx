@@ -5,6 +5,7 @@ import { SECTION_ID, SECTION_TYPE } from "../../consts/SECTION";
 import NewRelease from "./NewRelease";
 import PlayingSection from "./PlayingSection";
 import MixSection from "./MixSection";
+import WeekChartSection from "./WeekChartSection";
 
 const Section = ({ className, type, dataSection = [] }) => {
   const getData = dataSection && dataSection?.items;
@@ -16,8 +17,10 @@ const Section = ({ className, type, dataSection = [] }) => {
         <NewRelease data={getData} />
       ) : type === SECTION_TYPE.playlist ? (
         <PlayingSection data={getData} />
-      ) : (
+      ) : type === SECTION_ID.hMix ? (
         <MixSection data={getData} />
+      ) : (
+        <WeekChartSection data={getData} />
       )}
     </div>
   );

@@ -6,13 +6,13 @@ const Action = ({ isOnlyShowPlay = true }) => {
   return (
     <div className="action-container">
       <div className="action">
-        <Button className={isOnlyShowPlay ? "is-hidden" : "no-bg"}>
+        <Button className={isOnlyShowPlay ? "is-hidden" : "no-bg hide-on-mobile"}>
           <i className="icon ic-like"></i>
         </Button>
         <Button className="no-bg border-circle">
           <i className="icon action-play ic-svg-play-circle"></i>
         </Button>
-        <Button className={isOnlyShowPlay ? "is-hidden" : "no-bg"}>
+        <Button className={isOnlyShowPlay ? "is-hidden" : "no-bg hide-on-mobile"}>
           <i className="icon ic-more"></i>
         </Button>
       </div>

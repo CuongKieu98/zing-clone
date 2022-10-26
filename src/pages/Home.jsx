@@ -56,8 +56,14 @@ const Home = () => {
         )}
       />
       {/* chart */}
-
+      <Section
+        type={SECTION_TYPE.weekChart}
+        dataSection={dataHome.find(
+          (e) => e.sectionType === SECTION_TYPE.weekChart
+        )}
+      />
       {/* banner */}
+
       {/* artists */}
       {/* top100 */}
       <Section

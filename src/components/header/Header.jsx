@@ -245,7 +245,7 @@ const ModalTheme = ({onClose}) => {
               image={item.img}
               className=""
               customImg=""
-             
+              showAction={false}
             >
               <div className="title">
                 {item.title}
@@ -262,6 +262,7 @@ const ModalTheme = ({onClose}) => {
               image={item.img}
               className=""
               customImg=""
+              showAction={false}
 
             >
                <div className="title">
@@ -280,6 +281,7 @@ const ModalTheme = ({onClose}) => {
               className=""
               customImg=""
               content={item.title}
+              showAction={false}
             >
                <div className="title">
                 {item.title}
