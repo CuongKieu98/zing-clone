@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../card/Card";
 
+
 const WeekChartSection = ({ data }) => {
   return (
     <div className="container week-chart-section">

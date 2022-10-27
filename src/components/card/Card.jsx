@@ -1,5 +1,7 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Action from "../action/Action";
+import Image from "../image/Image";
 
 import "./card.scss";
 
@@ -18,9 +20,7 @@ const Card = ({
         className={"card__images " + className}
         onClick={onClick ? onClick : null}
       >
-        <figure>        
-          <img src={image} alt="" />
-        </figure>
+        <Image src={image} />
         <div className="opacity"></div>
         {showAction && <Action isOnlyShowPlay={isOnlyShowPlay} />}
       </div>

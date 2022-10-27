@@ -8,6 +8,7 @@ import Button from "../components/button/Button";
 const Home = () => {
   const [dataHome, setDataHome] = useState([]);
   const [slideItem, setSlideItem] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -18,68 +19,87 @@ const Home = () => {
         setSlideItem(
           response.data.items.find((e) => e.sectionType === SECTION_TYPE.banner)
         );
-        console.log(
-          response.data.items.find((e) => e.sectionType === SECTION_TYPE.banner)
-        );
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     };
     getData();
   }, []);
 
   return (
-    <div className="container">
-      <Slide items={slideItem.items} />
-      {/* new-release */}
-      <Section
-        type={SECTION_TYPE.newRelease}
-        dataSection={dataHome.find(
-          (e) => e.sectionType === SECTION_TYPE.newRelease
-        )}
-      />
-      {/* hAutoTheme1 */}
-      <Section
-        type={SECTION_TYPE.playlist}
-        dataSection={dataHome.find(
-          (e) => e.sectionId === SECTION_ID.hAutoTheme1
-        )}
-      />
-      <Section
-        type={SECTION_ID.hMix}
-        dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.hMix)}
-      />
-      <Section
-        type={SECTION_TYPE.playlist}
-        dataSection={dataHome.find(
-          (e) => e.sectionId === SECTION_ID.hAutoTheme2
-        )}
-      />
-      {/* chart */}
-      <Section
-        type={SECTION_TYPE.weekChart}
-        dataSection={dataHome.find(
-          (e) => e.sectionType === SECTION_TYPE.weekChart
-        )}
-      />
-      {/* banner */}
+    <>
+      {loading ? null : (
+        <div className="container">
+          <Slide items={slideItem.items} />
+          {/* new-release */}
+          <Section
+            type={SECTION_TYPE.newRelease}
+            dataSection={dataHome.find(
+              (e) => e.sectionType === SECTION_TYPE.newRelease
+            )}
+          />
+          {/* hAutoTheme1 */}
+          <Section
+            type={SECTION_TYPE.playlist}
+            dataSection={dataHome.find(
+              (e) => e.sectionId === SECTION_ID.hAutoTheme1
+            )}
+          />
+          <Section
+            type={SECTION_ID.hMix}
+            dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.hMix)}
+          />
+          <Section
+            type={SECTION_TYPE.playlist}
+            dataSection={dataHome.find(
+              (e) => e.sectionId === SECTION_ID.hAutoTheme2
+            )}
+          />
+          {/* chart */}
+          <Section
+            type={SECTION_TYPE.RTChart}
+            dataSection={dataHome.find(
+              (e) => e.sectionType === SECTION_TYPE.RTChart
+            )}
+          />
+          {/* banner */}
+          <Section
+            type={SECTION_TYPE.weekChart}
+            dataSection={dataHome.find(
+              (e) => e.sectionType === SECTION_TYPE.weekChart
+            )}
+          />
 
-      {/* artists */}
-      {/* top100 */}
-      <Section
-        type={SECTION_TYPE.playlist}
-        dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.h100)}
-      />
+          {/* artists */}
+          {/* top100 */}
+          <Section
+            type={SECTION_TYPE.playlist}
+            dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.h100)}
+          />
 
-      {/* new */}
-      {/* slide */}
+          {/* new */}
+          <Section
+            type={SECTION_TYPE.newReleaseChart}
+            dataSection={dataHome.find(
+              (e) => e.sectionType === SECTION_TYPE.newReleaseChart
+            )}
+          />
+          {/* slide */}
 
-      {/* xone */}
-      <Section
-        type={SECTION_TYPE.playlist}
-        dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.hXone)}
-      />
-    </div>
+          {/* xone */}
+          <Section
+            type={SECTION_TYPE.playlist}
+            dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.hXone)}
+          />
+          {/* radio */}
+          <Section
+            type={SECTION_TYPE.livestream}
+            dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.hLiveRadio)}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

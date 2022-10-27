@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./button.scss"
+import "./button.scss";
 
 const Button = (props) => {
-  const { className, onClick, children ,style} = props;
+  const { className, onClick, children, style } = props;
   return (
     <button
       className={"btn " + className}
@@ -16,6 +16,6 @@ const Button = (props) => {
   );
 };
 Button.propTypes = {
-    onClick: PropTypes.func,
-  };
+  onClick: PropTypes.func,
+};
 export default Button;

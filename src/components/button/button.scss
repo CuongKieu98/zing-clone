@@ -13,7 +13,7 @@
   position: relative;
   background-color: var(--alpha-bg);
   color: var(--white);
-  &.active{
+  &.active {
     border-color: var(--purple-primary);
     background-color: var(--purple-primary);
     color: var(--white);
@@ -38,7 +38,7 @@
       }
     }
   }
-  .icon{
+  .icon {
     font-size: 16px;
     padding: 5px;
     border-radius: 50%;
@@ -46,8 +46,10 @@
   &.no-bg {
     background-color: transparent;
   }
-  &:hover{
-    -webkit-filter: brightness(.9);
-    filter: brightness(.9);
+  &:hover {
+    background-color: var(--hover-tooltip-opacity);
+  }
+  .icon.ic-svg-play-circle {
+    background-image: url("../../assets/font/play.81e7696e.svg");
   }
 }

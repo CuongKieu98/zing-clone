@@ -1,0 +1,14 @@
+@use "../../scss/" as *;
+
+.slide-carousel-wrapper {
+  position: relative;
+  .slide-carousel {
+    display: flex;
+    position: relative;
+    margin: 0 -15px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+  }
+}

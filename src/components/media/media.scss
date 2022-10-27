@@ -18,7 +18,11 @@
       cursor: pointer;
       figure {
         border-radius: 4px;
+        img{
+          transition: transform .7s;
+        }
       }
+
     }
     + .info {
       overflow: hidden;
@@ -48,7 +52,72 @@
       margin-top: 3px;
       white-space: nowrap;
     }
+    .song-prefix {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      margin-right: 10px;
+      color: var(--song-item-action);
+      font-weight: 700;
+      .number {
+        font-size: 14px;
+        line-height: 1.29;
+        font-weight: 500;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: max-content;
+        min-width: 18px;
+        text-align: center;
+        color: var(--text-primary);
+      }
+    }
   }
+  .media-content{
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: left;
+    align-self: center;
+    width: 0;
+    .title-wrapper-content {
+      display: flex;
+      align-items: center;
+      .item-title {
+        white-space: normal;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.38;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+      }
+      .subtitle {
+        white-space: normal;
+      }
+     
+    }
+    .order {
+      opacity: 0.4;
+      -webkit-text-stroke: 1px var(--main-text-stroke);
+      font-size: 40px;
+      font-weight: 900;
+      color: transparent;
+      line-height: 1;
+      font-family: "Roboto", sans-serif;
+    }
+    .release-date {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+  }
+
   .media-right {
     .level > .level-item > .btn {
       @include flex(center, center);
@@ -102,5 +171,13 @@
     overflow: hidden;
     max-width: 100%;
     line-height: normal;
+  }
+  &:hover{
+    .opacity{
+      visibility: visible;
+    }
+    .action{
+      visibility: visible;
+    }
   }
 }

@@ -7,43 +7,42 @@ import { Navigation } from "swiper";
 import "swiper/css/navigation";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "swiper/css";
+import Image from "../image/Image";
 const Slide = (props) => {
-  const { items} = props;
+  const { items } = props;
   return (
     <div className="slide">
-        <div className="slide-container">
-
-      
-      <Swiper
-        modules={[ Navigation]}
-        grabCursor={true}
-        spaceBetween={0}
-        slidesPerView={1}
-        navigation={true}
-        loop={true}
-        breakpoints={{
-          600: {
-            slidesPerView: 2,
-            spaceBetween: 5,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 0,
-          },
-        }}
-        // autoplay={{
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // }}
-      >
-        {items?.map((item, index) => (
-          <SwiperSlide key={index}>
-            {({ isActive }) => (
-              <SlideItem item={item} className={isActive ? "active" : ""} />
-            )}
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="slide-container">
+        <Swiper
+          modules={[Navigation]}
+          grabCursor={true}
+          spaceBetween={0}
+          slidesPerView={1}
+          navigation={true}
+          loop={true}
+          breakpoints={{
+            600: {
+              slidesPerView: 2,
+              spaceBetween: 5,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 0,
+            },
+          }}
+          // autoplay={{
+          //   delay: 5000,
+          //   disableOnInteraction: false,
+          // }}
+        >
+          {items?.map((item, index) => (
+            <SwiperSlide key={index}>
+              {({ isActive }) => (
+                <SlideItem item={item} className={isActive ? "active" : ""} />
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
@@ -56,15 +55,7 @@ const SlideItem = (props) => {
 
   return (
     <div className="slide-item__content_banner">
-      <figure>
-        <LazyLoadImage
-          effect="blur"
-          height="100%"
-          with="100%"
-          src={image}
-          alt=""
-        />
-      </figure>
+      <Image src={image} />
     </div>
   );
 };

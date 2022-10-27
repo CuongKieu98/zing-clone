@@ -29,8 +29,14 @@
     visibility: hidden;
     width: 80%;
     .btn:hover {
+      -webkit-filter: brightness(0.9);
+      filter: brightness(0.9);
+      background-color: transparent;
+    }
+    .btn.hover:hover{
       background-color: var(--hover-tooltip-opacity);
     }
+
     .btn.border-circle {
       border: 1px solid;
       .icon.action-play {
@@ -43,6 +49,10 @@
       .icon.ic-svg-play-circle {
         background-image: url("../../assets/font/play.81e7696e.svg");
       }
+    }
+    .btn > .icon.action-play {
+      width: 45px;
+      height: 45px;
     }
   }
 }
