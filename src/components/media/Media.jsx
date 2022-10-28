@@ -58,7 +58,7 @@ const MediaLeft = ({
     <div className="media-left">
       {prefix && <SongPrefix rank={rank} audio={item} type={type} />}
       <div className="song-thumb">
-        <Image className={sizeImg} src={item.thumbnail} />
+        <Image className={sizeImg} src={item.thumbnailM || item.thumbnail} />
         <div className="opacity"></div>
         <Action isOnlyShowPlay={true} isBorder={false}/>
       </div>

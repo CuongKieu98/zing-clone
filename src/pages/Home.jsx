@@ -4,6 +4,7 @@ import Section from "../components/section/Section";
 import Slide from "../components/slide/Slide";
 import { SECTION_ID, SECTION_TYPE } from "../consts/SECTION";
 import Button from "../components/button/Button";
+import Footer from "../components/footer/Footer";
 
 const Home = () => {
   const [dataHome, setDataHome] = useState([]);
@@ -70,14 +71,11 @@ const Home = () => {
               (e) => e.sectionType === SECTION_TYPE.weekChart
             )}
           />
-
-          {/* artists */}
           {/* top100 */}
           <Section
             type={SECTION_TYPE.playlist}
             dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.h100)}
           />
-
           {/* new */}
           <Section
             type={SECTION_TYPE.newReleaseChart}
@@ -85,7 +83,6 @@ const Home = () => {
               (e) => e.sectionType === SECTION_TYPE.newReleaseChart
             )}
           />
-          {/* slide */}
 
           {/* xone */}
           <Section
@@ -97,6 +94,13 @@ const Home = () => {
             type={SECTION_TYPE.livestream}
             dataSection={dataHome.find((e) => e.sectionId === SECTION_ID.hLiveRadio)}
           />
+          {/* event */}
+          <Section
+            type={SECTION_TYPE.event}
+            dataSection={dataHome.find((e) => e.sectionType === SECTION_TYPE.event)}
+          /> 
+          {/* footer */}
+          <Footer />
         </div>
       )}
     </>

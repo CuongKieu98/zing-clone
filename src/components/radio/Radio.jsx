@@ -57,6 +57,10 @@ const Radio = (props) => {
             spaceBetween: 5,
           },
           1024: {
+            slidesPerView: 5,
+            spaceBetween: 5,
+          },
+          1248: {
             slidesPerView: 7,
             spaceBetween: 5,
           },

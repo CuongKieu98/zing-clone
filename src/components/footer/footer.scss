@@ -1,0 +1,68 @@
+@use "../../scss/" as *;
+
+.footer {
+  margin-top: 48px;
+  padding: 0 40px;
+  text-align: center;
+  flex-grow: 1;
+
+  position: relative;
+  width: 100%;
+  @include mobile {
+    margin-bottom: 20px;
+  }
+  .title {
+    margin-bottom: 24px;
+    font-size: 12px;
+    letter-spacing: 1.71px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+  .columns {
+    justify-content: center;
+    margin: 0 -12px;
+    .column {
+      width: 12.5%;
+      padding: 0 10px;
+      position: relative;
+      min-height: 1px;
+      float: left;
+      flex-shrink: 0;
+      @include tablet {
+        width: 25%;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      @include mobile{
+        padding: 0 5px;
+      }
+    }
+    .partner-item {
+      border-radius: 8px;
+      overflow: hidden;
+      .content {
+        padding-bottom: 56.25%;
+        height: 0;
+        position: relative;
+        figure {
+          background-color: #f7f7f7;
+          line-height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          img {
+            max-width: 90%;
+            max-height: 80%;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}

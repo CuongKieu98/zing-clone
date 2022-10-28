@@ -9,6 +9,7 @@ import WeekChartSection from "./WeekChartSection";
 import ChartSection from "./ChartSection";
 import NewReleaseSlider from "./NewReleaseSlider";
 import Radio from "../radio/Radio";
+import Event from "../event/Event";
 
 const Section = ({ className, type, dataSection = [] }) => {
   const getData = dataSection && dataSection?.items;
@@ -28,7 +29,9 @@ const Section = ({ className, type, dataSection = [] }) => {
         <ChartSection data={getData} chart={dataChart}/>
       ) : type === SECTION_TYPE.newReleaseChart ? (
         <NewReleaseSlider data={getData}/> 
-      ) : <Radio data={getData}/>}
+      ) : type === SECTION_TYPE.livestream ? (
+        <Radio data={getData}/>
+      ) : <Event data={getData} />}
 
     </div>
   );
