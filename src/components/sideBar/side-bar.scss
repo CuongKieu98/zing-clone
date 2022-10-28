@@ -1,158 +1,170 @@
 @use "../../scss/" as *;
 
-.side-bar{
-    position: relative;
-    z-index: 100;
-    width: 240px;
-    height: calc(100vh - 90px);
+.side-bar {
+  position: relative;
+  z-index: 100;
+  width: 240px;
+  height: calc(100vh - 90px);
 
-    padding-top: 70px;
-    padding-bottom: 54px;
-    background-color: var(--sidebar-bg);
-    @include tablet {
-        width: 70px;
-        padding-bottom: 55px;
-        transition: width .3s ease-out;
-    
-      }
-      @include mobile{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        z-index: 100;
-        height: 45px;
-        background-color: var(--layout-bg) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        overflow: hidden;
-        flex-direction: column;
+  padding-top: 70px;
+  padding-bottom: 54px;
+  background-color: var(--sidebar-bg);
+  @include tablet {
+    width: 70px;
+    padding-bottom: 55px;
+    transition: width 0.3s ease-out;
+  }
+  @include mobile {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    height: 45px;
+    background-color: var(--layout-bg) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    padding: 0;
+  }
+  &__wrapper {
+    @include flex(center, center);
+
+    &__menu {
+      width: 100%;
+      position: relative;
+      margin-bottom: 15px;
+
+      ul {
+        margin: 0;
         padding: 0;
-    
-      }
-      &__wrapper {
-        @include flex(center, center);
-    
-        &__menu {
-          width: 100%;
-          position: relative;
-          margin-bottom: 15px;
-    
-          ul {
-            margin: 0;
-            padding: 0;
-    
-            li {
-              font-weight: 600;
-              color:var(--navigation-text);
-              border-left: 3px solid transparent;
-    
-              a {
-                @include flex(center, unset);
-                padding: 8px 25px;
-                font-size: 13px;
-                i {
-                  line-height: 66%;
-                  display: inline-block;
-                  margin-right: 10px;
-                }
-    
-                span {
-                  @include mobile {
-                    display: inline-block !important;
-                    font-weight: 400;
-                    font-size: 10px;
-                  }
-                  @include tablet {
-                    display: none;
-                  }
-                }
+
+        li {
+          font-weight: 600;
+          color: var(--navigation-text);
+          border-left: 3px solid transparent;
+          &.active {
+            background-color: var(--alpha-bg);
+            border-left: 3px solid var(--purple-primary);
+            color: var(--text-item-hover);
+            @include mobile {
+              border-bottom: 3px solid var(--purple-primary);
+              border-left: unset;
+            }
+          }
+          a {
+            @include flex(center, unset);
+            padding: 8px 25px;
+            font-size: 13px;
+            i {
+              line-height: 66%;
+              display: inline-block;
+              margin-right: 10px;
+            }
+            .icon {
+              font-size: 24px;
+
+              border-radius: 4px;
+              flex-shrink: 0;
+            }
+
+            span {
+              @include mobile {
+                display: inline-block !important;
+                font-weight: 400;
+                font-size: 10px;
+              }
+              @include tablet {
+                display: none;
               }
             }
           }
-    
-          .radio-live{
-    
-            @include tablet {
-              display: none;
-            }
-          }
-          @include mobile{
-            height: 45px;
-            ul{
-              height: 100%;
-              display: flex;
-              flex-direction: row;
-              justify-content: space-around;
-              li{
-                width: 100%;
-                a{
-                  height: 100%;
-                  width: 100%;
-                  padding: 0;
-                  flex-direction: column;
-                  justify-content: center;
-             
-                  align-items: center;
-                  white-space: nowrap;
-                  text-decoration: none;
-                  i{
-                    font-size: 2rem !important;
-                    margin-right: 0;
-                  }
-                  
-                }
-              }
-            }
-    
-          }
-        }
-        &__divide {
-          position: relative;
-          height: 1px;
-          margin-bottom: 15px;
-          &::after{
-            content: "";
-            border-top: 1px solid hsla(0,0%,100%,0.1);
-            position: absolute;
-            left: 25px;
-            right: 25px;
-            top: 0;
-          }
         }
       }
-      .logo{
-        width: 120px;
-        height: 40px;
-        display: inline-block;
-        background: url('../../assets/images/logo.svg') 50%/contain no-repeat;
-        // @include tablet {
-        //   width: 45px;
-        //   height: 45px;
-        //   background: url('../../assets/images/logosmall.svg') 50%/contain no-repeat;;
-        // }
-        @include mobile {
+
+      .radio-live {
+        line-height: 0;
+        margin-left: 8px;
+        background-color: inherit;
+        @include tablet {
           display: none;
         }
       }
-      .nav-bar{
-        width: 240px;
-        &__brand{
-          width: 240px;
-          height: 70px;
-          position: fixed;
-          top: 0;
-          padding: 0 25px 0 28px;
+      @include mobile {
+        height: 45px;
+        ul {
+          height: 100%;
           display: flex;
-          align-items: center;
-          @include tablet {
-            justify-content: center;
-            width: 70px;
-            padding: 0;
+          flex-direction: row;
+          justify-content: space-around;
+          li {
+            width: 100%;
+            a {
+              height: 100%;
+              width: 100%;
+              padding: 0;
+              flex-direction: column;
+              justify-content: center;
+
+              align-items: center;
+              white-space: nowrap;
+              text-decoration: none;
+              i {
+                font-size: 2rem !important;
+                margin-right: 0;
+              }
+            }
           }
         }
-        @include mobile{
-          display: none;
-        }
       }
+    }
+    &__divide {
+      position: relative;
+      height: 1px;
+      margin-bottom: 15px;
+      &::after {
+        content: "";
+        border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+        position: absolute;
+        left: 25px;
+        right: 25px;
+        top: 0;
+      }
+    }
+  }
+  .logo {
+    width: 120px;
+    height: 40px;
+    display: inline-block;
+    background: url("../../assets/images/logo.svg") 50% / contain no-repeat;
+    // @include tablet {
+    //   width: 45px;
+    //   height: 45px;
+    //   background: url('../../assets/images/logosmall.svg') 50%/contain no-repeat;;
+    // }
+    @include mobile {
+      display: none;
+    }
+  }
+  .nav-bar {
+    width: 240px;
+    &__brand {
+      width: 240px;
+      height: 70px;
+      position: fixed;
+      top: 0;
+      padding: 0 25px 0 28px;
+      display: flex;
+      align-items: center;
+      @include tablet {
+        justify-content: center;
+        width: 70px;
+        padding: 0;
+      }
+    }
+    @include mobile {
+      display: none;
+    }
+  }
 }

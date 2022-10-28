@@ -12,6 +12,8 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import Media from "../media/Media";
+import LIST_TYPE from "../../consts/LIST_TYPE";
 
 ChartJS.register(
   CategoryScale,
@@ -23,27 +25,71 @@ ChartJS.register(
   Legend
 );
 
-const ChartLine = ({ chart }) => {
+const ChartLine = ({ chart, songs }) => {
   const isNull = chart !== undefined;
-  const labels = chart !== undefined ? chart?.times.map((a) => a.hour) : [];
+  const labels =
+    chart !== undefined ? chart?.times.map((a) => a.hour + ":00") : [];
   //const itemChart = chart !== undefined ? chart?.items[0].map((a) => a.counter) : [];
   console.log(isNull && Object.values(chart?.items)[0]);
+  const footer = (tooltipItems) => {
+    return (
+      <>
+        {songs.slice(0, 1).map((item, i) => (
+          <div className="chart-song-item" key={i}>
+            <div className="list-item">
+              <Media
+                isOnlyShowMore={false}
+                item={item}
+                releaseDate={false}
+                rank={i + 1}
+                prefix={true}
+                type={LIST_TYPE.rank}
+              />
+            </div>
+          </div>
+        ))}
+      </>
+    );
+  };
   const options = {
     interaction: {
-      mode: "index",
+      mode: "nearest",
       intersect: false,
-      axis:"x"
+      axis: "x",
     },
     stacked: false,
     plugins: {
       legend: {
         display: false,
       },
-
     },
     scales: {
       y: {
-        display: false,
+        ticks: {
+          color: "transparent",
+        },
+        display: true,
+        grid: {
+          borderDash: [1, 1],
+          drawBorder: false,
+          color: "hsla(0,2%,57%,.5)",
+        },
+      },
+      x: {
+        ticks: {
+          color: "hsla(0,0%,100%,.5)", // not 'fontColor:' anymore
+          //fontSize: 14,
+          font: {
+            style: "normal",
+          },
+          maxRotation: 0,
+          minRotation: 0,
+          drawBorder: false,
+        },
+        grid: {
+          borderDash: [],
+          color: "transparent",
+        },
       },
     },
   };
@@ -51,7 +97,7 @@ const ChartLine = ({ chart }) => {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: songs.slice(0,1).map((n) => n.title),
         data: isNull && Object.values(chart?.items)[0].map((c) => c.counter),
         borderColor: " rgb(74, 144, 226)",
         backgroundColor: " rgb(74, 144, 226)",
@@ -63,7 +109,7 @@ const ChartLine = ({ chart }) => {
         hoverBorderWidth: 5,
       },
       {
-        label: "Dataset 2",
+        label: songs.slice(1,2).map((n) => n.title),
         data: isNull && Object.values(chart?.items)[1].map((c) => c.counter),
         borderColor: "rgb(39, 189, 156)",
         backgroundColor: "rgb(39, 189, 156)",
@@ -73,7 +119,7 @@ const ChartLine = ({ chart }) => {
         borderWidth: 1.5,
       },
       {
-        label: "Dataset 3",
+        label: songs.slice(2,3).map((n) => n.title),
         data: isNull && Object.values(chart?.items)[2].map((c) => c.counter),
         borderColor: "rgb(227, 80, 80)",
         backgroundColor: "rgb(227, 80, 80)",
@@ -90,5 +136,6 @@ const ChartLine = ({ chart }) => {
     </div>
   );
 };
+
 
 export default ChartLine;

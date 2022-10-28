@@ -21,41 +21,31 @@ const SideBar = () => {
       </nav>
       <div className="side-bar__wrapper">
         <nav className="side-bar__wrapper__menu">
-            <ul>
+          <ul>
             {sideItem.map((item, index) => (
               <li
                 key={index}
                 className={`${index === active ? "active" : ""}`}
-                style={
-                  index === active
-                    ? {
-                        backgroundColor:"var(--alpha-bg)",
-                        borderLeft: "3px solid var(--purple-primary)",
-                        color:"var(--text-item-hover)"
-                      }
-                    : null
-                }
+                
               >
                 <Link to={item.path} title={item.title}>
-                  <i>{item.icon}</i>
-                  
+                  <i className={item.icon}></i>
+
                   <span>{item.title}</span>
                   {item.img && (
-                    <img
+                    <figure
                       className="radio-live"
-                      src={item.img}
-                      alt=""
-                      style={{ marginLeft: "8px" }}
-                    />
+                    >
+                      <img src={item.img} alt="" />
+                    </figure>
                   )}
                 </Link>
               </li>
             ))}
-            </ul>
+          </ul>
         </nav>
       </div>
       <div className="side-bar__wrapper__divide"></div>
-
     </aside>
   );
 };
