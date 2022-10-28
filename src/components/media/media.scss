@@ -15,14 +15,15 @@
       position: relative;
       overflow: hidden;
       border-radius: 4px;
+      margin-right: 10px;
+      flex-shrink: 0;
       cursor: pointer;
       figure {
         border-radius: 4px;
-        img{
-          transition: transform .7s;
+        img {
+          transition: transform 0.7s;
         }
       }
-
     }
     + .info {
       overflow: hidden;
@@ -71,9 +72,43 @@
         text-align: center;
         color: var(--text-primary);
       }
+      .red {
+        color: #e35050;
+      }
+      .green {
+        color: #1dc186;
+      }
+      .grey {
+        color: var(--text-secondary);
+      }
+      .sort {
+        width: 18px;
+        height: 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-primary);
+      }
+      @include mobile {
+        display: block;
+      margin-right: 0;
+
+        .number{
+          font-size: 20px !important;
+          width: 40px !important;
+        }
+        .sort{
+          width: auto !important;
+          height: auto !important;
+          .sort-num{
+            display: none;
+          }
+        }
+      }
     }
   }
-  .media-content{
+  .media-content {
     flex-basis: auto;
     flex-grow: 1;
     flex-shrink: 1;
@@ -97,7 +132,6 @@
       .subtitle {
         white-space: normal;
       }
-     
     }
     .order {
       opacity: 0.4;
@@ -116,6 +150,18 @@
       color: var(--text-secondary);
       font-size: 14px;
     }
+    .album-info {
+      color: var(--song-item-action);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    @include tablet-2 {
+      .album-info {
+        display: none;
+      }
+    }
   }
 
   .media-right {
@@ -132,9 +178,19 @@
     .level-item {
       position: relative;
       margin-right: 12px;
+      
     }
     .hover-items {
-      visibility: hidden;
+      display: none;
+    }
+    .icon{
+      color: var(--text-primary);
+    }
+
+    .duration {
+      font-size: 12px;
+      width: 46px;
+      color: var(--song-item-action);
     }
   }
   .info {
@@ -172,11 +228,11 @@
     max-width: 100%;
     line-height: normal;
   }
-  &:hover{
-    .opacity{
+  &:hover {
+    .opacity {
       visibility: visible;
     }
-    .action{
+    .action {
       visibility: visible;
     }
   }

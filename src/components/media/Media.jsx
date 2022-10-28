@@ -13,6 +13,7 @@ import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import moment from "moment";
 import LIST_TYPE from "../../consts/LIST_TYPE";
 import Image from "../image/Image";
+import stringUtils from "../../utils/stringUtils";
 
 const Media = ({
   customImg,
@@ -22,9 +23,9 @@ const Media = ({
   prefix = false,
   rank,
   type,
-  isContent = false,
   isRight = true,
   isInfoLeft = true,
+  contentType,
 }) => {
   return (
     <div className="media">
@@ -37,8 +38,13 @@ const Media = ({
         type={type}
         isInfoLeft={isInfoLeft}
       />
-      {isContent ? (
-        <MediaContent item={item} rank={rank} releaseDate={releaseDate} />
+      {contentType ? (
+        <MediaContent
+          item={item}
+          rank={rank}
+          releaseDate={releaseDate}
+          type={contentType}
+        />
       ) : null}
       {isRight ? <MediaRight showMore={isOnlyShowMore} item={item} /> : null}
     </div>
@@ -60,7 +66,7 @@ const MediaLeft = ({
       <div className="song-thumb">
         <Image className={sizeImg} src={item.thumbnailM || item.thumbnail} />
         <div className="opacity"></div>
-        <Action isOnlyShowPlay={true} isBorder={false}/>
+        <Action isOnlyShowPlay={true} isBorder={false} />
       </div>
       {isInfoLeft ? (
         <div className="info">
@@ -82,25 +88,33 @@ const MediaLeft = ({
   );
 };
 
-const MediaContent = ({ item, rank, releaseDate }) => {
+const MediaContent = ({ item, rank, releaseDate, type }) => {
   return (
     <div className="media-content">
-      <div>
-        <div className="title-wrapper-content">
-          <span className="item-title title">{item.title}</span>
+      {type === LIST_TYPE.ALBUM ? (
+        <div className="album-info">
+          <span>{item.album.title}</span>
         </div>
-        <h3 className="subtitle">
-          <span>{item.artistsNames}</span>
-        </h3>
-      </div>
-      <div>
-        <span className="order">#{rank}</span>
-        {releaseDate && (
-          <span className="release-date">
-            {moment.unix(item.releaseDate).format("DD.MM.YYYY")}
-          </span>
-        )}
-      </div>
+      ) : (
+        <>
+          <div>
+            <div className="title-wrapper-content">
+              <span className="item-title title">{item.title}</span>
+            </div>
+            <h3 className="subtitle">
+              <span>{item.artistsNames}</span>
+            </h3>
+          </div>
+          <div>
+            <span className="order">#{rank}</span>
+            {releaseDate && (
+              <span className="release-date">
+                {moment.unix(item.releaseDate).format("DD.MM.YYYY")}
+              </span>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -111,29 +125,29 @@ const MediaRight = ({ showMore, item }) => {
       <div className="hover-items">
         <div className="level">
           <div className="level-item">
-            <Button className={showMore ? "is-hidden-display" : ""}>
-              <MicRoundedIcon
-                sx={{ fontSize: 20, color: "var(--text-primary)" }}
-              />
+            <Button className={showMore ? "is-hidden-display" : "hide-on-mobile"}>
+              <i className="icon ic-karaoke"></i>
             </Button>
           </div>
           <div className="level-item">
-            <Button className={showMore ? "is-hidden-display" : ""}>
-              <FavoriteBorderRoundedIcon
-                sx={{ fontSize: 20, color: "var(--text-primary)" }}
-              />
+            <Button className={showMore ? "is-hidden-display" : "hide-on-mobile"}>
+              <i className="icon ic-like"></i>
             </Button>
           </div>
           <div className="level-item">
             <Button>
-              <MoreHorizRoundedIcon
-                sx={{ fontSize: 20, color: "var(--text-primary)" }}
-              />
+              <i className="icon ic-more"></i>
             </Button>
           </div>
         </div>
       </div>
-      <div className="action-items"></div>
+      <div className="action-items">
+        <div className="level">
+          <div className="level-item duration">
+            {stringUtils.formatDuration(item.duration)}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -145,15 +159,16 @@ const SongPrefix = ({ type, rank, audio }) => {
       numRef?.current?.classList.add(`top-${rank}`);
     }
   }, []);
-  // const SortIcon = () => {
-  //   if (audio && audio.rakingStatus > 0) {
-  //     return <ArrowDropUpIcon sx={{ color: "#1dc186" }} />;
-  //   } else if (audio && audio.rakingStatus < 0) {
-  //     return <ArrowDropDownIcon sx={{ color: "#e35050" }} />;
-  //   } else {
-  //     return <RemoveIcon />;
-  //   }
-  // };
+
+  const SortIcon = () => {
+    if (audio && audio.rakingStatus > 0) {
+      return <i className="icon green is-18x18 is-center ic-up"></i>;
+    } else if (audio && audio.rakingStatus < 0) {
+      return <i className="icon red is-18x18 is-center ic-down"></i>;
+    } else {
+      return <i className="icon is-18x18 is-center grey ic-balance"></i>;
+    }
+  };
 
   return (
     <div className="song-prefix">
@@ -161,19 +176,20 @@ const SongPrefix = ({ type, rank, audio }) => {
         <i className="icon ic-song"></i>
       ) : (
         <>
-          <span className="number" ref={numRef}>
+          <span className="number is-center" ref={numRef}>
             {rank}
           </span>
-          {/* <div className="sort">
+
+          <div className="sort">
             <SortIcon />
-            {audio.rakingStatus !== 0 && (
+            {audio.rakingStatus !== 0 ? (
               <div className="sort-num">
                 {audio.rakingStatus > 0
                   ? audio.rakingStatus
                   : audio.rakingStatus * -1}
               </div>
-            )}
-          </div> */}
+            ) : null}
+          </div>
         </>
       )}
     </div>

@@ -50,7 +50,7 @@ const Footer = () => {
                     <div className="column mar-b-30" key={i}>
                         <div className="partner-item">
                             <div className="content">
-                                <Image src={item.img} />
+                                <Image src={item.img} height="auto"/>
                             </div>
                         </div>
                     </div>

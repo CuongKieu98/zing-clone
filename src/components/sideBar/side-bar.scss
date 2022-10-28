@@ -80,6 +80,9 @@
               }
             }
           }
+          &:hover{
+            color: var(--text-item-hover);
+          }
         }
       }
 

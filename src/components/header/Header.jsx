@@ -37,7 +37,6 @@ const Header = () => {
     inputRef.current.focus();
   };
 
-
   const onFocusInput = (isFocus) => {
     if (isFocus) {
       setIsColapse("is-copalse");
@@ -116,32 +115,15 @@ const Header = () => {
       <div className="level">
         <div className="level-left">
           <Button className="no-bg">
-            <ArrowBackIcon
-              className="icon"
-              sx={{
-                fontSize: 20,
-                color: "var(--setting-icon-text)",
-                marginRight: "20px",
-              }}
-            />
+            <i className="icon ic-back"></i>
           </Button>
           <Button className="no-bg">
-            <ArrowForwardIcon
-              className="icon"
-              sx={{
-                fontSize: 20,
-                color: "var(--setting-icon-text)",
-                marginRight: "20px",
-              }}
-            />
+            <i className="icon ic-forward"></i>
           </Button>
           <form className="search">
             <div className={"search__container " + isColapse}>
               <Button className="no-bg pd-7">
-                <SearchIcon
-                  className="icon"
-                  sx={{ fontSize: 25, color: "var(--text-placeholder)" }}
-                />
+                <i className="icon ic-search"></i>
               </Button>
               <div className="input-wrapper">
                 <input
@@ -182,7 +164,7 @@ const Header = () => {
             )}
           </form>
         </div>
-        <RightHeader onOpenModal={handleOpenDialog}/>
+        <RightHeader onOpenModal={handleOpenDialog} />
       </div>
       <Modal onOpen={openDialog} onClose={handleCloseDialog} title="Giao Diện">
         <ModalTheme onClose={handleCloseDialog} />
@@ -191,11 +173,11 @@ const Header = () => {
   );
 };
 
-const RightHeader = ({onOpenModal}) => {
+const RightHeader = ({ onOpenModal }) => {
   return (
     <div className="level-right">
       <div className="setting-item">
-        <Button  onClick={onOpenModal}>
+        <Button onClick={onOpenModal}>
           <ColorLensIcon
             sx={{ fontSize: 20, color: "var(--setting-icon-text)" }}
           />
@@ -232,24 +214,15 @@ const RightHeader = ({onOpenModal}) => {
   );
 };
 
-const ModalTheme = ({onClose}) => {
-
-
+const ModalTheme = ({ onClose }) => {
   return (
     <div className="container-theme">
       <h3 className="title pad-rl-7">Dynamic</h3>
       <div className="columns">
         {THEME_DYNAMIC.map((item, i) => (
           <div className="column theme-modal mb-2" key={i}>
-            <Card
-              image={item.img}
-              className=""
-              customImg=""
-              showAction={false}
-            >
-              <div className="title">
-                {item.title}
-              </div>
+            <Card image={item.img} className="" customImg="" showAction={false}>
+              <div className="title">{item.title}</div>
             </Card>
           </div>
         ))}
@@ -258,16 +231,8 @@ const ModalTheme = ({onClose}) => {
       <div className="columns">
         {THEME_2.map((item, index) => (
           <div className="column theme-modal mb-2" key={index}>
-            <Card
-              image={item.img}
-              className=""
-              customImg=""
-              showAction={false}
-
-            >
-               <div className="title">
-                {item.title}
-              </div>
+            <Card image={item.img} className="" customImg="" showAction={false}>
+              <div className="title">{item.title}</div>
             </Card>
           </div>
         ))}
@@ -283,9 +248,7 @@ const ModalTheme = ({onClose}) => {
               content={item.title}
               showAction={false}
             >
-               <div className="title">
-                {item.title}
-              </div>
+              <div className="title">{item.title}</div>
             </Card>
           </div>
         ))}

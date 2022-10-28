@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 
 import "swiper/css";
 import Button from "../button/Button";
+import LIST_TYPE from "../../consts/LIST_TYPE";
 
 const NewReleaseSlider = (props) => {
   const { data } = props;
@@ -45,7 +46,7 @@ const NewReleaseSlider = (props) => {
                   item={item}
                   prefix={false}
                   releaseDate={true}
-                  isContent={true}
+                  contentType={LIST_TYPE.lsthome}
                   rank={index + 1}
                   customImg={"is-120"}
                   isRight={false}

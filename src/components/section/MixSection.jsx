@@ -4,7 +4,6 @@ import Card from "../card/Card";
 import Image from "../image/Image";
 
 const MixSection = ({ data }) => {
-  console.log(data);
   return (
     <div className="section-mix">
       <div className="section-mix__items">

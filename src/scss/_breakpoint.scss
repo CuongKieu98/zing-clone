@@ -6,8 +6,15 @@
     }
 }
 
+
 @mixin tablet {
     @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}
+
+@mixin tablet-2 {
+    @media only screen and (max-width: $tablet-2-width) {
         @content;
     }
 }

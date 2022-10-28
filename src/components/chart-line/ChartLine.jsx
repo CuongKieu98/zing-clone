@@ -12,8 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import Media from "../media/Media";
-import LIST_TYPE from "../../consts/LIST_TYPE";
+
 
 ChartJS.register(
   CategoryScale,
@@ -29,34 +28,15 @@ const ChartLine = ({ chart, songs }) => {
   const isNull = chart !== undefined;
   const labels =
     chart !== undefined ? chart?.times.map((a) => a.hour + ":00") : [];
-  //const itemChart = chart !== undefined ? chart?.items[0].map((a) => a.counter) : [];
-  console.log(isNull && Object.values(chart?.items)[0]);
-  const footer = (tooltipItems) => {
-    return (
-      <>
-        {songs.slice(0, 1).map((item, i) => (
-          <div className="chart-song-item" key={i}>
-            <div className="list-item">
-              <Media
-                isOnlyShowMore={false}
-                item={item}
-                releaseDate={false}
-                rank={i + 1}
-                prefix={true}
-                type={LIST_TYPE.rank}
-              />
-            </div>
-          </div>
-        ))}
-      </>
-    );
-  };
+  console.log(chart);
   const options = {
     interaction: {
       mode: "nearest",
       intersect: false,
       axis: "x",
     },
+    maintainAspectRatio: false,
+    responsive: true,
     stacked: false,
     plugins: {
       legend: {
@@ -65,15 +45,8 @@ const ChartLine = ({ chart, songs }) => {
     },
     scales: {
       y: {
-        ticks: {
-          color: "transparent",
-        },
-        display: true,
-        grid: {
-          borderDash: [1, 1],
-          drawBorder: false,
-          color: "hsla(0,2%,57%,.5)",
-        },
+        display: false,
+
       },
       x: {
         ticks: {
@@ -117,6 +90,8 @@ const ChartLine = ({ chart, songs }) => {
         pointRadius: 0,
         tension: 0.5,
         borderWidth: 1.5,
+        hoverBorderWidth: 5,
+
       },
       {
         label: songs.slice(2,3).map((n) => n.title),
@@ -127,6 +102,8 @@ const ChartLine = ({ chart, songs }) => {
         tension: 0.5,
         pointRadius: 0,
         borderWidth: 1.5,
+        hoverBorderWidth: 5,
+
       },
     ],
   };

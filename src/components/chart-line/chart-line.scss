@@ -1,1 +1,7 @@
 @use "../../scss/" as *;
+.chart-container{
+    height: 300px;
+    @include mobile {
+        height: 250px;
+    }
+}

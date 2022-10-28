@@ -530,6 +530,9 @@ h3 {
       @include tablet {
         padding: 0 29px;
       }
+      @include mobile {
+        padding: 0 20px;
+      }
     }
     main.page-section > .container {
       min-height: calc(100% - 158px);
@@ -606,6 +609,14 @@ h3 {
 .is-120 {
   width: 120px;
   height: 120px;
+}
+.is-40 {
+  width: 40px;
+  height: 40px;
+}
+.is-18x18{
+  width: 18px;
+  height: 18px;
 }
 //end size
 
