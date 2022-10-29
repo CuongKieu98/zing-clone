@@ -20,6 +20,14 @@ export function getSong (param){
     };
     return makeApiCall(option)
 }
+export function getRadio (param){
+    const url = `${baseUrl}/radio?page=${param}`
+    var option = {
+        url:url,
+        method:"GET"
+    };
+    return makeApiCall(option)
+}
 
 export function getDetailPlaylist (param){
     const url = `${baseUrl}/detailplaylist?id=${param}`

@@ -17,6 +17,7 @@ const Home = () => {
       try {
         const response = await getHome(params);
         setDataHome(response.data.items);
+        console.log(response.data.items);
         setSlideItem(
           response.data.items.find((e) => e.sectionType === SECTION_TYPE.banner)
         );

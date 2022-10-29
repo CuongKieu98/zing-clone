@@ -13,7 +13,8 @@ import Event from "../event/Event";
 
 const Section = ({ className, type, dataSection = [] }) => {
   const getData = dataSection && dataSection?.items;
-  const dataChart = (type === SECTION_TYPE.RTChart && dataSection) ? dataSection?.chart : []
+  const dataChart =
+    type === SECTION_TYPE.RTChart && dataSection ? dataSection?.chart : [];
   return (
     <div className="section">
       <h3 className="section__title">{dataSection?.title}</h3>
@@ -26,13 +27,14 @@ const Section = ({ className, type, dataSection = [] }) => {
       ) : type === SECTION_TYPE.weekChart ? (
         <WeekChartSection data={getData} />
       ) : type === SECTION_TYPE.RTChart ? (
-        <ChartSection data={getData} chart={dataChart}/>
+        <ChartSection data={getData} chart={dataChart} />
       ) : type === SECTION_TYPE.newReleaseChart ? (
-        <NewReleaseSlider data={getData}/> 
+        <NewReleaseSlider data={getData} />
       ) : type === SECTION_TYPE.livestream ? (
-        <Radio data={getData}/>
-      ) : <Event data={getData} />}
-
+        <Radio data={getData} />
+      ) : type === SECTION_TYPE.event ? (
+        <Event data={getData} />
+      ) : null}
     </div>
   );
 };

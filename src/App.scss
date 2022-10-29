@@ -435,6 +435,11 @@ body ::-webkit-scrollbar-track {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 0 0;
 }
+.section-radio ::-webkit-scrollbar-thumb {
+  background-color: transparent !important;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 0;
+}
 .section-mix h1.title,
 h3.title {
   font-size: 18px;
@@ -602,6 +607,10 @@ h3 {
 }
 .mar-b-30{
   margin-bottom: 30px!important;
+}
+.is-50x50{
+  width: 50px;
+  height: 50px;
 }
 .mt-10 {
   margin-top: 10px;

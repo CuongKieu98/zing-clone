@@ -11,6 +11,11 @@ const SECTION_ID = {
     hAlbum:"hAlbum",
     hXone:"hXone",
     hLiveRadio:"hLiveRadio",
+    radHot:"radHot",
+    radPromoteProgram:"radPromoteProgram",
+    radReplay:"radReplay",
+    radLastestProgram:"radLastestProgram",
+    radPromoteCategory:"radPromoteCategory"
 }
 
 const SECTION_TYPE = {
@@ -25,7 +30,8 @@ const SECTION_TYPE = {
     artistSpotlight:"artistSpotlight",
     newReleaseChart:"newReleaseChart",
     livestream:"livestream",
-    event:"event"
+    event:"event",
+    RadioBanner:"Radio_Banner"
 
 
 }

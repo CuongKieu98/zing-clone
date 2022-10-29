@@ -5,6 +5,8 @@ import Chart from "../pages/Chart";
 import Home from "../pages/Home";
 import "../App.scss";
 import PageNotFound from "../pages/PageNotFound";
+import RadioPage from "../pages/RadioPage";
+import FollowPage from "../pages/FollowPage";
 
 const Layout = () => {
   return (
@@ -43,6 +45,26 @@ const publicRoutes = [
       {
         path: "/zing-chart",
         element: <Chart />,
+      },
+    ],
+  },
+  {
+    path: "/radio",
+    element: <Layout />,
+    children: [
+      {
+        path: "/radio",
+        element: <RadioPage />,
+      },
+    ],
+  },
+  {
+    path: "/follow",
+    element: <Layout />,
+    children: [
+      {
+        path: "/follow",
+        element: <FollowPage />,
       },
     ],
   },
