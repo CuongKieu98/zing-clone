@@ -7,6 +7,9 @@ import "../App.scss";
 import PageNotFound from "../pages/PageNotFound";
 import RadioPage from "../pages/RadioPage";
 import FollowPage from "../pages/FollowPage";
+import NewFeeds from "../components/new-feeds/NewFeeds";
+import PlayingBar from "../components/now-playing-bar/PlayingBar";
+import Profile from "../pages/Profile";
 
 const Layout = () => {
   return (
@@ -22,11 +25,22 @@ const Layout = () => {
           </main>
         </div>
       </div>
+      <PlayingBar />
     </div>
   );
 };
 
 const publicRoutes = [
+  {
+    path: "/profile",
+    element: <Layout />,
+    children: [
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
+  },
   {
     path: "/",
     element: <Layout />,
@@ -59,12 +73,19 @@ const publicRoutes = [
     ],
   },
   {
-    path: "/follow",
+    path: "/follow/:nation",
     element: <Layout />,
     children: [
       {
-        path: "/follow",
+        path: "/follow/:nation",
         element: <FollowPage />,
+        children:[
+          {
+            path:":id",
+            element:<NewFeeds />
+          }
+
+        ]
       },
     ],
   },

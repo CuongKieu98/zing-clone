@@ -38,6 +38,15 @@ export function getDetailPlaylist (param){
     return makeApiCall(option)
 }
 
+export function getNewFeeds (id,param){
+    const url = `${baseUrl}/new-feeds?id=${id}&page=${param}`
+    var option = {
+        url:url,
+        method:"GET"
+    };
+    return makeApiCall(option)
+}
+
 export function getInfoSong (param){
     const url = `${baseUrl}/infosong?id=${param}`
     var option = {

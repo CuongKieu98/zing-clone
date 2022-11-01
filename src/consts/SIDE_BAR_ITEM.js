@@ -30,7 +30,7 @@ const SIDE_BAR_ITEM_1 = [
   },
   {
     title: "Theo Dõi",
-    path: "/follow",
+    path: "/follow/Viet-Nam/IWZ9Z08I",
     icon:"icon  ic-24-FeedTab",
   },
 ];

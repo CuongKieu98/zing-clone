@@ -440,6 +440,11 @@ body ::-webkit-scrollbar-track {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 0 0;
 }
+.navbar-wrap ::-webkit-scrollbar-thumb {
+  background-color: transparent !important;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 0;
+}
 .section-mix h1.title,
 h3.title {
   font-size: 18px;
@@ -498,12 +503,24 @@ h3 {
   line-height: 66%;
   display: inline-block;
 }
-
+.clickable{
+  cursor: pointer;
+}
 //padding
 .pd-7 {
   padding: 7px;
 }
-
+.is-text-center {
+  text-align: center;
+}
+.is-5-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  white-space: normal;
+}
 .columns {
   display: flex;
   box-lines: multiple;
@@ -605,10 +622,19 @@ h3 {
   width: 60px;
   height: 60px;
 }
-.mar-b-30{
-  margin-bottom: 30px!important;
+.mar-b-30 {
+  margin-bottom: 30px !important;
 }
-.is-50x50{
+.mar-b-15 {
+  margin-bottom: 15px !important;
+}
+.mar-r-30 {
+  margin-right: 30px !important;
+}
+.mar-b-0 {
+  margin-bottom: 0 !important;
+}
+.is-50x50 {
   width: 50px;
   height: 50px;
 }
@@ -619,11 +645,12 @@ h3 {
   width: 120px;
   height: 120px;
 }
+
 .is-40 {
   width: 40px;
   height: 40px;
 }
-.is-18x18{
+.is-18x18 {
   width: 18px;
   height: 18px;
 }

@@ -1,0 +1,41 @@
+@use "../../scss/" as *;
+
+.nav-tabs-container {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  .nav-bar {
+    @include flex(center, center);
+    font-weight: 400;
+    margin: 0 auto;
+    background-color: var(--alpha-bg);
+    padding: 3px;
+    border-radius: 15px;
+    font-size: 14px;
+    &__item {
+      padding: 0;
+      font-size: 12px;
+      line-height: 1;
+      min-width: 120px;
+      margin: 0;
+      color: var(--navigation-text);
+      @include flex(center, center);
+      text-transform: uppercase;
+      position: relative;
+      &:hover{
+        color: var(--text-item-hover);
+      }
+      cursor: pointer;
+      &.active{
+        color: var(--text-item-hover);
+        border-radius: 15px;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 7%);
+        background-color: var(--tab-active-bg);
+      }
+    }
+    &__title {
+      display: block;
+      padding: 7px 25px;
+    }
+  }
+}

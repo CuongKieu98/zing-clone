@@ -1,0 +1,15 @@
+@use "./index.scss" as *;
+
+.new-feeds-page{
+    margin-top: 40px;
+    .genre-artis{
+        padding-top: 32px;
+    margin-bottom: 48px;
+    .navbar-wrap{
+        border-bottom: none;
+        padding: 0 60px;
+        margin-bottom: 28px!important;
+        margin: 0 calc(var(--padding-section)*-1);
+    }
+    }
+}
