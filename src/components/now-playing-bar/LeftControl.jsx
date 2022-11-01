@@ -6,7 +6,7 @@ import Image from "../image/Image";
 const LeftControl = () => {
   return (
     <div className="player-controls-left level-left">
-      <div className="level-item is-narrow">
+      <div className="level-item is-narrow w100">
         <div className="media-item">
           <div className="media-item__left">
             <Link to="/">
@@ -23,7 +23,7 @@ const LeftControl = () => {
                 <span className="song-title-item">
                   <Link to={"/"}>
                     <div className="title-wrapper">
-                      <span className="item-title title">Cô Đơn sasas asa asas assd asdsa asdsad asas asa Trên Sofa</span>
+                      <span className="item-title title">Cô Đơn Trên Sofa</span>
                     </div>
                   </Link>
                 </span>

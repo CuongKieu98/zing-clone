@@ -1,10 +1,30 @@
 import React from "react";
 import Button from "../button/Button";
 import Slider from "@mui/material/Slider";
-
-
+import { styled } from "@mui/material/styles";
 const CenterControl = () => {
-
+  const SliderCustom = styled(Slider)({
+    color: "var(--progressbar-active-bg)",
+    height: 3,
+    "&:hover": {
+      height: 5,
+      ".MuiSlider-thumb": {
+        visibility: "visible",
+      },
+    },
+    "& .MuiSlider-thumb": {
+      height: 12,
+      width: 12,
+      visibility: "hidden",
+      backgroundColor: "var(--progressbar-active-bg)",
+      "&:before": {
+        display: "none",
+      },
+      "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+        boxShadow: "inherit",
+      },
+    },
+  });
 
   return (
     <div className="player-controls__player-bar level-center">
@@ -31,10 +51,10 @@ const CenterControl = () => {
       <div className="level-item mar-b-5">
         <span className="time-left">00:00</span>
         <div className="duration-bar">
-          <Slider
+          <SliderCustom
             size="small"
             defaultValue={0}
-            sx={{color:"var(--progressbar-active-bg)"}}
+            sx={{ color: "var(--progressbar-active-bg)" }}
           />
         </div>
         <span className="time-right">01:28</span>

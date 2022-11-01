@@ -499,10 +499,6 @@ h3 {
   flex-grow: 0;
   flex-shrink: 0;
 }
-.icon {
-  line-height: 66%;
-  display: inline-block;
-}
 .clickable{
   cursor: pointer;
 }
@@ -627,6 +623,9 @@ h3 {
 }
 .mar-b-15 {
   margin-bottom: 15px !important;
+}
+.mar-b-5{
+  margin-bottom: 5px !important;
 }
 .mar-r-30 {
   margin-right: 30px !important;
