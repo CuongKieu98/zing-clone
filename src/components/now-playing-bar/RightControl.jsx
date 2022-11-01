@@ -5,7 +5,7 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 
 const RightControl = (props) => {
-  const { onClick } = props;
+  const { onClick ,isActive} = props;
   const SliderCustom = styled(Slider)({
     color: "var(--progressbar-active-bg)",
     height: 3,
@@ -53,8 +53,8 @@ const RightControl = (props) => {
         <span className="divide"></span>
       </div>
       <div className="level-item is-narrow">
-        <Button className="no-bg list-music" onClick={onClick}>
-          <div className=" button-zmd">
+        <Button className={"no-bg list-music"} onClick={onClick}>
+          <div className={" button-zmd " + (isActive ? "is-active" : "")}>
             <i className="icon ic-list-music"></i>
           </div>
         </Button>
