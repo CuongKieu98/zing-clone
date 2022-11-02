@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { useSelector } from "react-redux";
+import { actionSelector } from "../../redux/selectors/selector";
 
 import CenterControl from "./CenterControl";
 import LeftControl from "./LeftControl";
@@ -7,6 +9,10 @@ import RightBar from "./RightBar";
 import RightControl from "./RightControl";
 const PlayingBar = () => {
   const rbarRef = useRef(null);
+
+  const audioReducer = useSelector(actionSelector);
+
+  const currAudio = audioReducer ? audioReducer.audiosReducer : null;
 
   const [rightBarOpen, setRightBarOpen] = useState(false);
 
@@ -35,7 +41,7 @@ const PlayingBar = () => {
       {/* righttab */}
       {rightBarOpen ? (
         <div className="right-bar exit" ref={rbarRef}>
-          <RightBar />
+          <RightBar currAudio={currAudio}/>
         </div>
       ) : null}
 
@@ -43,7 +49,11 @@ const PlayingBar = () => {
         <div className="level player-controls__container">
           <LeftControl />
           <CenterControl />
-          <RightControl onClick={() => toggleTabRight()} isActive={rightBarOpen} />
+          <RightControl
+            onClick={() => toggleTabRight()}
+            isActive={rightBarOpen}
+
+          />
         </div>
       </div>
     </div>

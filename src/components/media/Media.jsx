@@ -26,9 +26,10 @@ const Media = ({
   onPlay,
   onPause,
   isPlaying,
+  className
 }) => {
   return (
-    <div className="media">
+    <div className={"media " +  className}>
       <MediaLeft
         sizeImg={customImg}
         item={item}

@@ -8,7 +8,11 @@ import LIST_TYPE from "../consts/LIST_TYPE";
 import "../scss/_chart.scss";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { setSongInfo, togglePlay } from "../redux/actions/actions";
+import {
+  setPlayingList,
+  setSongInfo,
+  togglePlay,
+} from "../redux/actions/actions";
 import { useSelector } from "react-redux";
 import { actionSelector } from "../redux/selectors/selector";
 
@@ -50,6 +54,12 @@ const Chart = () => {
       setSongInfo({
         encodeId: id,
         src: response.data,
+      })
+    );
+    dispatch(
+      setPlayingList({
+        type: "zing-chart",
+        list: chartData.RTChart.items,
       })
     );
     dispatch(togglePlay(true));

@@ -92,16 +92,16 @@
       }
       @include mobile {
         display: block;
-      margin-right: 0;
+        margin-right: 0;
 
-        .number{
+        .number {
           font-size: 20px !important;
           width: 40px !important;
         }
-        .sort{
+        .sort {
           width: auto !important;
           height: auto !important;
-          .sort-num{
+          .sort-num {
             display: none;
           }
         }
@@ -178,12 +178,11 @@
     .level-item {
       position: relative;
       margin-right: 12px;
-      
     }
     .hover-items {
       display: none;
     }
-    .icon{
+    .icon {
       color: var(--text-primary);
     }
 
@@ -229,6 +228,18 @@
     line-height: normal;
   }
   &:hover {
+    .opacity {
+      visibility: visible;
+    }
+    .action {
+      visibility: visible;
+    }
+  }
+  &.is-active {
+    background-color: var(--purple-primary);
+    &:hover {
+      background-color: var(--purple-primary) !important;
+    }
     .opacity {
       visibility: visible;
     }
