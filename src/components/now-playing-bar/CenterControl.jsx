@@ -1,18 +1,37 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
+
 import Button from "../button/Button";
+
 import Slider from "@mui/material/Slider";
+
 import { styled } from "@mui/material/styles";
 
 import audios from "../../assets/fake-data/audio";
-import { useEffect } from "react";
+
 import stringUtils from "../../utils/stringUtils";
+
 import { useMemo } from "react";
+
 import { toast } from "react-toastify";
 
+import { useSelector ,useDispatch} from "react-redux";
+
+import { actionSelector } from "../../redux/selectors/selector";
+import { togglePlay } from "../../redux/actions/actions";
+
+
 const CenterControl = () => {
+  const dispatch = useDispatch();
+
   const audioRef = useRef(null);
 
-  const [isPlay, setPlay] = useState(false);
+  const reducerAudio = useSelector(actionSelector);
+
+  const currPlaying = reducerAudio ? reducerAudio.audiosReducer : null;
+
+  console.log(currPlaying);
+
+  const [isPlay, setPlay] = useState(currPlaying.isPlay);
 
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -52,15 +71,16 @@ const CenterControl = () => {
   const handlePlay = (e) => {
     e.stopPropagation();
     if (!audioRef.current) return;
-    setPlay(true);
+    dispatch(togglePlay(true));
     audioRef.current.play();
   };
 
   const handlePause = (e) => {
     e.stopPropagation();
     if (!audioRef.current) return;
-    setPlay(false);
+    dispatch(togglePlay(false));
     audioRef.current.pause();
+
   };
 
   const handleLoop = (e) => {
@@ -91,9 +111,10 @@ const CenterControl = () => {
     audioRef.current.currentTime = (time * audioRef.current.duration) / 100;
   };
 
-  // useEffect(() =>{
-
-  // },[])
+  useEffect(() => {
+    setPlay(currPlaying.isPlay)
+  },[currPlaying.isPlay])
+  
 
   return (
     <div className="player-controls__player-bar level-center">

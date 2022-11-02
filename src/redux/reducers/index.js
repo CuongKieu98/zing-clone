@@ -1,9 +1,9 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 
-import rightBarReducer from "./rightBarReducer";
-    
-const reducers = combineReducers({
-    rightBarReducer,
+import audiosReducer from "./audiosReducer";
+
+const reducer = combineReducers({
+  audiosReducer,
 });
 
-export default reducers;
+export default reducer;
