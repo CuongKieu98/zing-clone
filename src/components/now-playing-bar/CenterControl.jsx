@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import Button from "../button/Button";
 
@@ -14,11 +14,11 @@ import { useMemo } from "react";
 
 import { toast } from "react-toastify";
 
-import { useSelector ,useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { actionSelector } from "../../redux/selectors/selector";
-import { togglePlay } from "../../redux/actions/actions";
 
+import { togglePlay } from "../../redux/actions/actions";
 
 const CenterControl = () => {
   const dispatch = useDispatch();
@@ -29,9 +29,7 @@ const CenterControl = () => {
 
   const currPlaying = reducerAudio ? reducerAudio.audiosReducer : null;
 
-  console.log(currPlaying);
-
-  const [isPlay, setPlay] = useState(currPlaying.isPlay);
+  // const [isPlay, setPlay] = useState(currPlaying.isPlay);
 
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -80,7 +78,6 @@ const CenterControl = () => {
     if (!audioRef.current) return;
     dispatch(togglePlay(false));
     audioRef.current.pause();
-
   };
 
   const handleLoop = (e) => {
@@ -89,8 +86,10 @@ const CenterControl = () => {
   };
 
   const handleEnded = () => {
-    if (!isPlay) return;
-    setPlay(false);
+    if (!currPlaying.isPlay) return;
+    dispatch(togglePlay(false));
+
+    // setPlay(false);
   };
 
   const onPlaying = () => {
@@ -104,17 +103,24 @@ const CenterControl = () => {
 
   const handleLoadMetadata = () => {
     setDuration(audioRef.current.duration);
-    if (isPlay) audioRef.current.play();
+    if (currPlaying.isPlay) audioRef.current.play();
   };
 
   const handleChangeTimeSlider = (e, time) => {
     audioRef.current.currentTime = (time * audioRef.current.duration) / 100;
   };
 
-  useEffect(() => {
-    setPlay(currPlaying.isPlay)
-  },[currPlaying.isPlay])
+  // useEffect(() => {
+  //   setPlay(currPlaying.isPlay)
+  // },[currPlaying.isPlay])
   
+  useEffect(() => {
+    if (currPlaying.isPlay) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [currPlaying.isPlay]);
 
   return (
     <div className="player-controls__player-bar level-center">
@@ -126,7 +132,7 @@ const CenterControl = () => {
           <Button className="no-bg">
             <i className="icon ic-pre"></i>
           </Button>
-          {isPlay ? (
+          {currPlaying.isPlay ? (
             <Button className="no-bg btn-play" onClick={(e) => handlePause(e)}>
               <i className="icon ic-pause-circle-outline"></i>
             </Button>
@@ -169,11 +175,10 @@ const CenterControl = () => {
         </span>
       </div>
       <audio
-        src={audios.cochoicochiu}
+        src={currPlaying.songInfo.src[128] || currPlaying.songInfo.src[320]}
         ref={audioRef}
-        autoPlay={isPlay}
-        // onEnded={}
-        loop={false}
+        autoPlay={currPlaying.isPlay}
+        loop={loop}
         hidden
         onLoadedMetadata={handleLoadMetadata}
         onTimeUpdate={onPlaying}

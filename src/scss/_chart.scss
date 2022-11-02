@@ -87,6 +87,15 @@
             }
           }
         }
+        &.active{
+          background-color: var(--alpha-bg);
+          .opacity{
+            visibility: visible;
+          }
+          .action{
+            visibility: visible;
+          }
+        }
       }
     }
   }

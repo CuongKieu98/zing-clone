@@ -23,6 +23,9 @@ const Media = ({
   isRight = true,
   isInfoLeft = true,
   contentType,
+  onPlay,
+  onPause,
+  isPlaying,
 }) => {
   return (
     <div className="media">
@@ -34,6 +37,9 @@ const Media = ({
         rank={rank}
         type={type}
         isInfoLeft={isInfoLeft}
+        onPlay={onPlay}
+        onPause={onPause}
+        isPlaying={isPlaying}
       />
       {contentType ? (
         <MediaContent
@@ -56,6 +62,9 @@ const MediaLeft = ({
   rank,
   type,
   isInfoLeft,
+  onPlay,
+  onPause,
+  isPlaying,
 }) => {
   return (
     <div className="media-left">
@@ -63,7 +72,20 @@ const MediaLeft = ({
       <div className="song-thumb">
         <Image className={sizeImg} src={item.thumbnailM || item.thumbnail} />
         <div className="opacity"></div>
-        <Action isOnlyShowPlay={true} isBorder={false} />
+
+        <div className="action-container">
+          <div className="action">
+            {isPlaying ? (
+              <Button className={"no-bg"} onClick={onPause}>
+                <i className={"icon action-play ic-gif-playing-white"}></i>
+              </Button>
+            ) : (
+              <Button className={"no-bg"} onClick={onPlay}>
+                <i className={"icon action-play ic-play"}></i>
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
       {isInfoLeft ? (
         <div className="info">
@@ -122,12 +144,16 @@ const MediaRight = ({ showMore, item }) => {
       <div className="hover-items">
         <div className="level">
           <div className="level-item">
-            <Button className={showMore ? "is-hidden-display" : "hide-on-mobile"}>
+            <Button
+              className={showMore ? "is-hidden-display" : "hide-on-mobile"}
+            >
               <i className="icon ic-karaoke"></i>
             </Button>
           </div>
           <div className="level-item">
-            <Button className={showMore ? "is-hidden-display" : "hide-on-mobile"}>
+            <Button
+              className={showMore ? "is-hidden-display" : "hide-on-mobile"}
+            >
               <i className="icon ic-like"></i>
             </Button>
           </div>

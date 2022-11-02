@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { getCharthome } from "../api/musicApi";
+import { getCharthome, getSong } from "../api/musicApi";
 import Button from "../components/button/Button";
 import ChartLine from "../components/chart-line/ChartLine";
 import List from "../components/list/List";
 import Media from "../components/media/Media";
 import LIST_TYPE from "../consts/LIST_TYPE";
 import "../scss/_chart.scss";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setSongInfo, togglePlay } from "../redux/actions/actions";
+import { useSelector } from "react-redux";
+import { actionSelector } from "../redux/selectors/selector";
 
 const Chart = () => {
   const [loading, setLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
-  const [dataSize,setDataSize] = useState(10);
+  const [dataSize, setDataSize] = useState(10);
+
+  const currentAudio = useSelector(actionSelector);
+  const currPlaying = currentAudio ? currentAudio.audiosReducer : null;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getChart = async () => {
@@ -25,6 +35,30 @@ const Chart = () => {
     };
     getChart();
   }, []);
+
+  const handlePlay = async (id) => {
+    if (currPlaying && currPlaying.songInfo.encodeId === id)
+      return dispatch(togglePlay(true));
+    const response = await getSong(id);
+    if (response.err !== 0) {
+      return toast(response.msg, {
+        type: "error",
+        hideProgressBar: true,
+      });
+    }
+    dispatch(
+      setSongInfo({
+        encodeId: id,
+        src: response.data,
+      })
+    );
+    dispatch(togglePlay(true));
+    console.log(response);
+  };
+
+  const handlePause = () => {
+    dispatch(togglePlay(false));
+  };
 
   return (
     <>
@@ -47,7 +81,14 @@ const Chart = () => {
           <div className="play-list-chart">
             {chartData.RTChart.items.slice(0, dataSize).map((item, i) => (
               <div className="chart-item" key={i}>
-                <div className="list-item-chart">
+                <div
+                  className={
+                    "list-item-chart " +
+                    (item.encodeId === currPlaying.songInfo.encodeId
+                      ? "active"
+                      : "")
+                  }
+                >
                   <Media
                     item={item}
                     prefix={true}
@@ -57,6 +98,12 @@ const Chart = () => {
                     rank={i + 1}
                     isOnlyShowMore={false}
                     contentType={LIST_TYPE.ALBUM}
+                    onPlay={() => handlePlay(item.encodeId)}
+                    onPause={handlePause}
+                    isPlaying={
+                      currPlaying.isPlay &&
+                      item.encodeId === currPlaying.songInfo.encodeId
+                    }
                   />
                 </div>
               </div>
@@ -64,7 +111,9 @@ const Chart = () => {
           </div>
           {dataSize < 100 ? (
             <div className="is-center">
-              <Button className="show-all" onClick={() => setDataSize(100)}>Xem top 100</Button>
+              <Button className="show-all" onClick={() => setDataSize(100)}>
+                Xem top 100
+              </Button>
             </div>
           ) : null}
         </div>

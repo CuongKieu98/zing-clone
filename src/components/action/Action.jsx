@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../button/Button";
 import "./action.scss";
 
-const Action = ({ isOnlyShowPlay = true, isBorder = true }) => {
+const Action = ({ isOnlyShowPlay = true, isBorder = true,onClick }) => {
   return (
     <div className="action-container">
       <div className="action">
@@ -11,7 +11,7 @@ const Action = ({ isOnlyShowPlay = true, isBorder = true }) => {
         >
           <i className="icon ic-like"></i>
         </Button>
-        <Button className={"no-bg " + (isBorder ? "border-circle" : "")}>
+        <Button className={"no-bg " + (isBorder ? "border-circle" : "")} onClick={onClick}>
           <i className={"icon action-play " + (isBorder ? "ic-svg-play-circle" :"ic-play")}></i>
         </Button>
         <Button

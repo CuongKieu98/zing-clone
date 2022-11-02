@@ -30,6 +30,7 @@ const ChartSection = ({ data ,chart}) => {
                       rank={i + 1}
                       prefix={true}
                       type={LIST_TYPE.rank}
+                      
                     />
                   </div>
                 </div>
@@ -43,6 +44,7 @@ const ChartSection = ({ data ,chart}) => {
         </div>
         <div className="column right-chart">
           <div className="chart-container">
+            
             <ChartLine chart={chart} songs={data}/>
           </div>
         </div>

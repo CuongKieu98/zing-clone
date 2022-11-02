@@ -154,4 +154,4 @@ const ChartLine = ({ chart, songs }) => {
   );
 };
 
-export default ChartLine;
+export default React.memo(ChartLine);;
