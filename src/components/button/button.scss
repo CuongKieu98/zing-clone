@@ -52,4 +52,7 @@
   .icon.ic-svg-play-circle {
     background-image: url("../../assets/font/play.81e7696e.svg");
   }
+  &.is-active i{
+    color: var(--link-text-hover);
+  }
 }

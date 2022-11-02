@@ -1,15 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import images from "../../assets/images";
-import themes from "../../assets/theme";
+
 import Action from "../action/Action";
 import Button from "../button/Button";
 import "./media.scss";
 import "moment/locale/vi";
 //icon
-import MicRoundedIcon from "@mui/icons-material/MicRounded";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
+
 import moment from "moment";
 import LIST_TYPE from "../../consts/LIST_TYPE";
 import Image from "../image/Image";

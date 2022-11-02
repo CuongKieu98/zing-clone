@@ -1,33 +1,37 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Button from "../button/Button";
 import Slider from "@mui/material/Slider";
 
 import { styled } from "@mui/material/styles";
 
 const RightControl = (props) => {
-  const { onClick ,isActive} = props;
-  const SliderCustom = styled(Slider)({
-    color: "var(--progressbar-active-bg)",
-    height: 3,
-    "&:hover": {
-      height: 5,
-      ".MuiSlider-thumb": {
-        visibility: "visible",
-      },
-    },
-    "& .MuiSlider-thumb": {
-      height: 12,
-      width: 12,
-      visibility: "hidden",
-      backgroundColor: "var(--progressbar-active-bg)",
-      "&:before": {
-        display: "none",
-      },
-      "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-        boxShadow: "inherit",
-      },
-    },
-  });
+  const { onClick, isActive } = props;
+  const SliderCustom = useMemo(
+    () =>
+      styled(Slider)({
+        color: "var(--progressbar-active-bg)",
+        height: 3,
+        "&:hover": {
+          height: 5,
+          ".MuiSlider-thumb": {
+            visibility: "visible",
+          },
+        },
+        "& .MuiSlider-thumb": {
+          height: 12,
+          width: 12,
+          visibility: "hidden",
+          backgroundColor: "var(--progressbar-active-bg)",
+          "&:before": {
+            display: "none",
+          },
+          "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+            boxShadow: "inherit",
+          },
+        },
+      }),
+    []
+  );
   return (
     <div className="player-controls__right level-right">
       <div className="level-item is-narrow">

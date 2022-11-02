@@ -174,7 +174,7 @@
             padding: 5px;
             border-radius: 50%;
           }
-          .ic-play-circle-outline {
+          .ic-play-circle-outline,.ic-pause-circle-outline {
             font-size: 40px;
             &:hover {
               background-color: transparent;
@@ -352,12 +352,12 @@
     }
     &__scroll {
       flex: 1 1;
-      .contenr-wrapper {
+      .content-wrapper {
         position: relative;
         overflow: hidden;
         width: 100%;
         height: 100%;
-        .contenr-container {
+        .content-container {
           position: absolute;
           inset: 0px;
           overflow: hidden scroll;
@@ -392,6 +392,37 @@
       margin-top: 0px;
       position: relative;
       padding: 0 8px 15px;
+      .list-item{
+        border-radius: 4px;
+        &:hover{
+          background-color: var(--alpha-bg);
+          .media-right > .hover-items{
+            display: block;
+          } 
+        }
+        .media-right{
+          .hover-items .level-item{
+              margin-right: 0;
+          }
+          .btn .icon{
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 50%;
+          }
+        } 
+        .media{
+          justify-content: space-between;
+          &:hover{
+            background-color: var(--alpha-bg);
+          }
+          .media-left{
+            @include flex(center,center);
+          }
+          .media-right > .action-items{
+            display: none;
+          }
+        }
+      }
     }
   }
 }
