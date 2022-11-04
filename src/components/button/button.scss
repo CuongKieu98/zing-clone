@@ -55,4 +55,9 @@
   &.is-active i{
     color: var(--link-text-hover);
   }
+  &:disabled{
+    box-shadow: none;
+    opacity: .5;
+    cursor: not-allowed;
+  }
 }

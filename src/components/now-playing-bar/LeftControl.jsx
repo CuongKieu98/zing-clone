@@ -5,8 +5,8 @@ import Image from "../image/Image";
 
 const LeftControl = (props) => {
 
-  const {info} = props
-  console.log(info);
+  const { info } = props;
+
   return (
     <div className="player-controls-left level-left">
       <div className="level-item is-narrow w100">
@@ -15,7 +15,10 @@ const LeftControl = (props) => {
             <Link to="/">
               <div className="thumb-wrapper">
                 <div className="thumb">
-                  <Image className="img-control" src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/1/7/f/1/17f17c49523af7fd7827ce1e2981b412.jpg" />
+                  <Image
+                    className="img-control"
+                    src={info.info.thumbnailM || info.info.thumbnail}
+                  />
                 </div>
               </div>
             </Link>
@@ -26,13 +29,13 @@ const LeftControl = (props) => {
                 <span className="song-title-item">
                   <Link to={"/"}>
                     <div className="title-wrapper">
-                      <span className="item-title title">Cô Đơn Trên Sofa</span>
+                      <span className="item-title title">{info.info.title}</span>
                     </div>
                   </Link>
                 </span>
               </div>
             </div>
-            <h3 className="subtitle">Hồ Ngọc Hà</h3>
+            <h3 className="subtitle">{info.info.artistsNames}</h3>
           </div>
           <div className="media-item__right">
             <div className="level">

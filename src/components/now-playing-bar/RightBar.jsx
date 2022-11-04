@@ -34,12 +34,12 @@ const RightBar = (props) => {
     dispatch(togglePlay(false));
   };
 
-  const handlePlay = async (id, i) => {
-    if (currAudio && currAudio.encodeId === id)
+  const handlePlay = async (data, i) => {
+    if (currAudio && currAudio.encodeId === data.encodeId)
       return dispatch(togglePlay(true));
-    dispatch(setCurrId(id));
+    dispatch(setCurrId(data.encodeId));
     dispatch(setLoadingApi(true));
-    const response = await getSong(id);
+    const response = await getSong(data.encodeId);
     if (response.err !== 0) {
       return toast(response.msg, {
         type: "error",
@@ -49,6 +49,7 @@ const RightBar = (props) => {
     dispatch(
       setSongInfo({
         src: response.data,
+        info:data
       })
     );
     dispatch(setLoadingApi(false));
@@ -68,7 +69,6 @@ const RightBar = (props) => {
   };
 
   useLayoutEffect(() => {
-    console.log(currAudio.playingList.list.findIndex((i) => i.encodeId === currAudio.encodeId));
     setListdata(currAudio.playingList);
   }, [currAudio.playingList]);
 
@@ -132,7 +132,7 @@ const RightBar = (props) => {
                                       isOnlyShowMore={true}
                                       customImg="is-40"
                                       onPlay={() =>
-                                        handlePlay(item.encodeId, i)
+                                        handlePlay(item, i)
                                       }
                                       onPause={handlePause}
                                       isPlaying={
@@ -156,7 +156,7 @@ const RightBar = (props) => {
                                         </h3>
 
                                         <h3 className="subtitle">
-                                          <span>Từ playlist</span>
+                                          <span>Từ playlist&nbsp;</span>
                                           <Link to={"/"}>#zingchart</Link>
                                         </h3>
                                       </div>

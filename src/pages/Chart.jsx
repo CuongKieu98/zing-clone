@@ -40,19 +40,19 @@ const Chart = () => {
     };
     getChart();
   }, []);
-
-  const handlePlay = async (id) => {
-    if (currPlaying && currPlaying.encodeId === id)
+console.log(currPlaying);
+  const handlePlay = async (data) => {
+    if (currPlaying && currPlaying.encodeId === data.encodeId)
       return dispatch(togglePlay(true));
     dispatch(setLoadingApi(true));
-    dispatch(setCurrId(id));
+    dispatch(setCurrId(data.encodeId));
     dispatch(
       setPlayingList({
         type: "zing-chart",
         list: [...chartData.RTChart.items],
       })
     );
-    const response = await getSong(id);
+    const response = await getSong(data.encodeId);
     if (response.err !== 0) {
       return toast(response.msg, {
         type: "error",
@@ -62,10 +62,12 @@ const Chart = () => {
     dispatch(
       setSongInfo({
         src: response.data,
+        info:data
       })
     );
     dispatch(setLoadingApi(false));
     dispatch(togglePlay(true));
+
   };
 
   const handlePause = () => {
@@ -108,7 +110,7 @@ const Chart = () => {
                     rank={i + 1}
                     isOnlyShowMore={false}
                     contentType={LIST_TYPE.ALBUM}
-                    onPlay={() => handlePlay(item.encodeId)}
+                    onPlay={() => handlePlay(item)}
                     onPause={handlePause}
                     isPlaying={
                       currPlaying.isPlay &&

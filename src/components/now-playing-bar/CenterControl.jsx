@@ -20,10 +20,12 @@ import { actionSelector } from "../../redux/selectors/selector";
 
 import {
   setCurrId,
+  setLoadingApi,
   setSongInfo,
   togglePlay,
 } from "../../redux/actions/actions";
 import { getSong } from "../../api/musicApi";
+import images from "../../assets/images";
 
 const CenterControl = () => {
   const dispatch = useDispatch();
@@ -71,6 +73,10 @@ const CenterControl = () => {
     []
   );
 
+  const currIdx = currPlaying.playingList.list.findIndex(
+    (i) => i.encodeId === currPlaying.encodeId
+  );
+
   const handlePlay = (e) => {
     e.stopPropagation();
     if (!audioRef.current) return;
@@ -88,18 +94,35 @@ const CenterControl = () => {
   const handleNext = async (e) => {
     e.stopPropagation();
     if (!audioRef.current) return;
-    const Idx = currPlaying.playingList.list.findIndex(
-      (i) => i.encodeId === currPlaying.encodeId
-    );
-    dispatch(setCurrId(currPlaying.playingList.list[Idx + 1].encodeId));
+    dispatch(setCurrId(currPlaying.playingList.list[currIdx + 1].encodeId));
+    dispatch(setLoadingApi(true));
     const response = await getSong(
-      currPlaying.playingList.list[Idx + 1].encodeId
+      currPlaying.playingList.list[currIdx + 1].encodeId
     );
     dispatch(
       setSongInfo({
         src: response.data,
+        info: currPlaying.playingList.list[currIdx + 1],
       })
     );
+    dispatch(setLoadingApi(false));
+  };
+
+  const handlePrev = async (e) => {
+    e.stopPropagation();
+    if (currIdx === 0) return;
+    dispatch(setCurrId(currPlaying.playingList.list[currIdx - 1].encodeId));
+    dispatch(setLoadingApi(true));
+    const response = await getSong(
+      currPlaying.playingList.list[currIdx - 1].encodeId
+    );
+    dispatch(
+      setSongInfo({
+        src: response.data,
+        info: currPlaying.playingList.list[currIdx - 1],
+      })
+    );
+    dispatch(setLoadingApi(false));
   };
 
   const handleLoop = (e) => {
@@ -151,10 +174,16 @@ const CenterControl = () => {
           <Button className="no-bg">
             <i className="icon ic-shuffle"></i>
           </Button>
-          <Button className="no-bg">
+          <Button className="no-bg" onClick={(e) => handlePrev(e)}  disabled={currIdx === 0 ? true : false}>
             <i className="icon ic-pre"></i>
           </Button>
-          {currPlaying.isPlay ? (
+          {currPlaying.isLoading ? (
+            <div className="pie-loading">
+              <i className="icon">
+                <img src={images.spiner} alt="" />
+              </i>
+            </div>
+          ) : currPlaying.isPlay ? (
             <Button className="no-bg btn-play" onClick={(e) => handlePause(e)}>
               <i className="icon ic-pause-circle-outline"></i>
             </Button>

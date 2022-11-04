@@ -174,7 +174,8 @@
             padding: 5px;
             border-radius: 50%;
           }
-          .ic-play-circle-outline,.ic-pause-circle-outline {
+          .ic-play-circle-outline,
+          .ic-pause-circle-outline {
             font-size: 40px;
             &:hover {
               background-color: transparent;
@@ -186,6 +187,20 @@
               background-color: transparent;
 
               filter: brightness(0.9);
+            }
+          }
+        }
+        .pie-loading {
+          padding: 7px 14px;
+          line-height: 0;
+          .icon {
+            border: 1px solid var(--player-text);
+            border-radius: 50%;
+            font-size: 16px;
+            img {
+              width: 34px;
+              height: 34px;
+              fill: var(--player-text);
             }
           }
         }
@@ -392,36 +407,54 @@
       margin-top: 0px;
       position: relative;
       padding: 0 8px 15px;
-      .list-item{
+      .list-item {
         border-radius: 4px;
-        &:hover{
+        &:hover {
           background-color: var(--alpha-bg);
-          .media-right > .hover-items{
+          .media-right > .hover-items {
             display: block;
-          } 
-        }
-        .media-right{
-          .hover-items .level-item{
-              margin-right: 0;
           }
-          .btn .icon{
+        }
+        .media-right {
+          .hover-items .level-item {
+            margin-right: 0;
+          }
+          .btn .icon {
             font-size: 16px;
             padding: 5px;
             border-radius: 50%;
           }
-        } 
-        .media{
+        }
+        .media {
           justify-content: space-between;
-          &:hover{
+          &:hover {
             background-color: var(--alpha-bg);
           }
-          .media-left{
-            @include flex(center,center);
+          .media-left {
+            @include flex(center, center);
           }
-          .media-right > .action-items{
+          .media-right > .action-items {
             display: none;
           }
         }
+        &.is-active {
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+    .next-songs {
+      padding: 15px 8px 5px;
+      .title {
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: none;
+        margin-bottom: 0;
+      }
+      .subtitle {
+        display: flex;
+        color: var(--text-muted);
       }
     }
   }

@@ -141,11 +141,11 @@
     height: 40px;
     display: inline-block;
     background: url("../../assets/images/logo.svg") 50% / contain no-repeat;
-    // @include tablet {
-    //   width: 45px;
-    //   height: 45px;
-    //   background: url('../../assets/images/logosmall.svg') 50%/contain no-repeat;;
-    // }
+    @include tablet {
+      width: 45px;
+      height: 45px;
+      background: url('../../assets/images/logo-tablet.svg') 50%/contain no-repeat;;
+    }
     @include mobile {
       display: none;
     }
