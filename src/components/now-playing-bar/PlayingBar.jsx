@@ -47,7 +47,7 @@ const PlayingBar = () => {
 
       <div className="player-controls clickable">
         <div className="level player-controls__container">
-          <LeftControl />
+          <LeftControl info={currAudio.songInfo}/>
           <CenterControl />
           <RightControl
             onClick={() => toggleTabRight()}

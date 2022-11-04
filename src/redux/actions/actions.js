@@ -14,6 +14,14 @@ export const setSongInfo = (info) => {
   };
 };
 
+export const setCurrId = (id) => {
+  return {
+    type: "ACTION_SET_CURRENTID",
+    payload: id,
+  };
+};
+
+
 export const setPlayingList = (list) => {
   return {
     type: "ACTION_SET_PLAYLIST",
@@ -21,7 +29,7 @@ export const setPlayingList = (list) => {
   };
 };
 
-export const setLoading= (value) => {
+export const setLoadingApi= (value) => {
   return {
     type: "ACTION_SET_LOADINGAPI",
     payload: value,

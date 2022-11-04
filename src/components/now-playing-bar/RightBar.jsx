@@ -1,17 +1,32 @@
 import React from "react";
-import NavTabs from "../nav-tabs/NavTabs";
 import Button from "../button/Button";
 import { useRef } from "react";
 import Media from "../media/Media";
 import { useDispatch } from "react-redux";
-import { setPlayingList, setSongInfo, togglePlay } from "../../redux/actions/actions";
+import {
+  setCurrId,
+  setLoadingApi,
+  setPlayingList,
+  setSongInfo,
+  togglePlay,
+} from "../../redux/actions/actions";
 import { getSong } from "../../api/musicApi";
 import { toast } from "react-toastify";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { actionSelector } from "../../redux/selectors/selector";
+import { useLayoutEffect } from "react";
 
 const RightBar = (props) => {
   const { currAudio } = props;
 
-  const playlist = currAudio.playingList
+  // const playlist = currAudio.playingList;
+
+  const [listdata, setListdata] = useState(currAudio.playingList);
+
 
   const dispatch = useDispatch();
 
@@ -19,9 +34,11 @@ const RightBar = (props) => {
     dispatch(togglePlay(false));
   };
 
-  const handlePlay = async (id) => {
-    if (currAudio && currAudio.songInfo.encodeId === id)
+  const handlePlay = async (id, i) => {
+    if (currAudio && currAudio.encodeId === id)
       return dispatch(togglePlay(true));
+    dispatch(setCurrId(id));
+    dispatch(setLoadingApi(true));
     const response = await getSong(id);
     if (response.err !== 0) {
       return toast(response.msg, {
@@ -31,13 +48,29 @@ const RightBar = (props) => {
     }
     dispatch(
       setSongInfo({
-        encodeId: id,
         src: response.data,
       })
     );
+    dispatch(setLoadingApi(false));
     dispatch(togglePlay(true));
   };
 
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+    const dataR = [...listdata.list]
+    const { source, destination } = result;
+    const [remove] = dataR.splice(source.index, 1);
+    const newData = dataR.splice(destination.index, 0, remove);
+    dispatch(setPlayingList({
+      type:listdata.type,
+      list:dataR
+    }))
+  };
+
+  useLayoutEffect(() => {
+    console.log(currAudio.playingList.list.findIndex((i) => i.encodeId === currAudio.encodeId));
+    setListdata(currAudio.playingList);
+  }, [currAudio.playingList]);
 
   return (
     <div className="right-bar__container">
@@ -69,24 +102,77 @@ const RightBar = (props) => {
           <div className="content-container">
             <div className="content-bar">
               <div className="right-bar__list">
-                {/* dnd */}
-                {playlist &&
-                  playlist.list.map((item, i) => (
-                    <div className={"list-item " + (item.encodeId === currAudio.songInfo.encodeId ? "is-active" : "")} key={item.encodeId}>
-                      <Media
-                        item={item}
-                        isOnlyShowMore={true}
-                        customImg="is-40"
-                        onPlay={() => handlePlay(item.encodeId)}
-                        onPause={handlePause}
-                        isPlaying={
-                          currAudio.isPlay &&
-                          item.encodeId === currAudio.songInfo.encodeId
-                        }
-                        className={item.encodeId === currAudio.songInfo.encodeId ? "is-active" : ""}
-                      />
-                    </div>
-                  ))}
+                <DragDropContext onDragEnd={onDragEnd}>
+                  <Droppable droppableId="1">
+                    {(provided) => (
+                      <div {...provided.draggableProps} ref={provided.innerRef}>
+                        {listdata &&
+                          listdata.list.map((item, i) => (
+                            <Draggable
+                              key={item.encodeId}
+                              draggableId={item.encodeId}
+                              index={i}
+                            >
+                              {(provided, snapshot) => (
+                                <>
+                                  <div
+                                    className={
+                                      "list-item " +
+                                      (item.encodeId === currAudio.encodeId
+                                        ? "is-active"
+                                        : "")
+                                    }
+                                    key={item.encodeId}
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                  >
+                                    <Media
+                                      item={item}
+                                      isOnlyShowMore={true}
+                                      customImg="is-40"
+                                      onPlay={() =>
+                                        handlePlay(item.encodeId, i)
+                                      }
+                                      onPause={handlePause}
+                                      isPlaying={
+                                        currAudio.isPlay &&
+                                        item.encodeId === currAudio.encodeId
+                                      }
+                                      isLoading={
+                                        currAudio.isLoading &&
+                                        item.encodeId === currAudio.encodeId
+                                      }
+                                      className={
+                                        item.encodeId === currAudio.encodeId
+                                          ? "is-active"
+                                          : ""
+                                      }
+                                    />
+                                    {item.encodeId === currAudio.encodeId ? (
+                                      <div className="next-songs">
+                                        <h3 className="title is-6">
+                                          Tiếp theo
+                                        </h3>
+
+                                        <h3 className="subtitle">
+                                          <span>Từ playlist</span>
+                                          <Link to={"/"}>#zingchart</Link>
+                                        </h3>
+                                      </div>
+                                    ) : null}
+                                  </div>
+                                </>
+                              )}
+                            </Draggable>
+                          ))}
+                        {provided.placeholder}
+                      </div>
+                    )}
+
+                    {/* dnd */}
+                  </Droppable>
+                </DragDropContext>
               </div>
             </div>
           </div>

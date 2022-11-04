@@ -92,7 +92,7 @@ const ChartLine = ({ chart, songs }) => {
     labels,
     datasets: [
       {
-        label: songs.slice(0, 1).map((n) => n.title),
+        label: songs?.slice(0, 1).map((n) => n.title),
         data: isNull && Object.values(chart?.items)[0].map((c) => c.counter),
         borderColor: " rgb(74, 144, 226)",
         backgroundColor: " rgb(74, 144, 226)",
@@ -112,7 +112,7 @@ const ChartLine = ({ chart, songs }) => {
         pointBorderWidth: 3,
       },
       {
-        label: songs.slice(1, 2).map((n) => n.title),
+        label: songs?.slice(1, 2).map((n) => n.title),
         data: isNull && Object.values(chart?.items)[1].map((c) => c.counter),
         borderColor: "rgb(39, 189, 156)",
         backgroundColor: "rgb(39, 189, 156)",
@@ -129,7 +129,7 @@ const ChartLine = ({ chart, songs }) => {
         oder: 3,
       },
       {
-        label: songs.slice(2, 3).map((n) => n.title),
+        label: songs?.slice(2, 3).map((n) => n.title),
         data: isNull && Object.values(chart?.items)[2].map((c) => c.counter),
         borderColor: "rgb(227, 80, 80)",
         backgroundColor: "rgb(227, 80, 80)",

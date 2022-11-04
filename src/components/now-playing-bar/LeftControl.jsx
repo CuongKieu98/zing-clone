@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import Button from "../button/Button";
 import Image from "../image/Image";
 
-const LeftControl = () => {
+const LeftControl = (props) => {
+
+  const {info} = props
+  console.log(info);
   return (
     <div className="player-controls-left level-left">
       <div className="level-item is-narrow w100">

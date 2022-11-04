@@ -26,7 +26,8 @@ const Media = ({
   onPlay,
   onPause,
   isPlaying,
-  className
+  className,
+  isLoading = false
 }) => {
   return (
     <div className={"media " +  className}>
@@ -41,6 +42,7 @@ const Media = ({
         onPlay={onPlay}
         onPause={onPause}
         isPlaying={isPlaying}
+        isLoading={isLoading}
       />
       {contentType ? (
         <MediaContent
@@ -66,6 +68,7 @@ const MediaLeft = ({
   onPlay,
   onPause,
   isPlaying,
+  isLoading,
 }) => {
   return (
     <div className="media-left">
@@ -76,7 +79,10 @@ const MediaLeft = ({
 
         <div className="action-container">
           <div className="action">
-            {isPlaying ? (
+            {isLoading ? (
+              <img src={images.spiner} alt="" />
+
+            ) : (isPlaying ? (
               <Button className={"no-bg"} onClick={onPause}>
                 <i className={"icon action-play ic-gif-playing-white"}></i>
               </Button>
@@ -84,7 +90,7 @@ const MediaLeft = ({
               <Button className={"no-bg"} onClick={onPlay}>
                 <i className={"icon action-play ic-play"}></i>
               </Button>
-            )}
+            ))}
           </div>
         </div>
       </div>

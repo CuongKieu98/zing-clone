@@ -18,7 +18,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { actionSelector } from "../../redux/selectors/selector";
 
-import { togglePlay } from "../../redux/actions/actions";
+import {
+  setCurrId,
+  setSongInfo,
+  togglePlay,
+} from "../../redux/actions/actions";
+import { getSong } from "../../api/musicApi";
 
 const CenterControl = () => {
   const dispatch = useDispatch();
@@ -80,6 +85,23 @@ const CenterControl = () => {
     audioRef.current.pause();
   };
 
+  const handleNext = async (e) => {
+    e.stopPropagation();
+    if (!audioRef.current) return;
+    const Idx = currPlaying.playingList.list.findIndex(
+      (i) => i.encodeId === currPlaying.encodeId
+    );
+    dispatch(setCurrId(currPlaying.playingList.list[Idx + 1].encodeId));
+    const response = await getSong(
+      currPlaying.playingList.list[Idx + 1].encodeId
+    );
+    dispatch(
+      setSongInfo({
+        src: response.data,
+      })
+    );
+  };
+
   const handleLoop = (e) => {
     e.stopPropagation();
     setLoop(!loop);
@@ -113,7 +135,7 @@ const CenterControl = () => {
   // useEffect(() => {
   //   setPlay(currPlaying.isPlay)
   // },[currPlaying.isPlay])
-  
+
   useEffect(() => {
     if (currPlaying.isPlay) {
       audioRef.current.play();
@@ -142,7 +164,7 @@ const CenterControl = () => {
             </Button>
           )}
 
-          <Button className="no-bg">
+          <Button className="no-bg" onClick={(e) => handleNext(e)}>
             <i className="icon ic-next"></i>
           </Button>
           {loop ? (

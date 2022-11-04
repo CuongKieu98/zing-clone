@@ -3,7 +3,7 @@ import { getHome } from "../api/musicApi";
 import Section from "../components/section/Section";
 import Slide from "../components/slide/Slide";
 import { SECTION_ID, SECTION_TYPE } from "../consts/SECTION";
-import Button from "../components/button/Button";
+
 import Footer from "../components/footer/Footer";
 
 const Home = () => {

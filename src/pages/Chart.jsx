@@ -9,6 +9,8 @@ import "../scss/_chart.scss";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import {
+  setCurrId,
+  setLoadingApi,
   setPlayingList,
   setSongInfo,
   togglePlay,
@@ -31,7 +33,6 @@ const Chart = () => {
       try {
         const response = await getCharthome();
         setChartData(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -41,8 +42,16 @@ const Chart = () => {
   }, []);
 
   const handlePlay = async (id) => {
-    if (currPlaying && currPlaying.songInfo.encodeId === id)
+    if (currPlaying && currPlaying.encodeId === id)
       return dispatch(togglePlay(true));
+    dispatch(setLoadingApi(true));
+    dispatch(setCurrId(id));
+    dispatch(
+      setPlayingList({
+        type: "zing-chart",
+        list: [...chartData.RTChart.items],
+      })
+    );
     const response = await getSong(id);
     if (response.err !== 0) {
       return toast(response.msg, {
@@ -52,18 +61,11 @@ const Chart = () => {
     }
     dispatch(
       setSongInfo({
-        encodeId: id,
         src: response.data,
       })
     );
-    dispatch(
-      setPlayingList({
-        type: "zing-chart",
-        list: chartData.RTChart.items,
-      })
-    );
+    dispatch(setLoadingApi(false));
     dispatch(togglePlay(true));
-    console.log(response);
   };
 
   const handlePause = () => {
@@ -89,14 +91,12 @@ const Chart = () => {
             />
           </div>
           <div className="play-list-chart">
-            {chartData.RTChart.items.slice(0, dataSize).map((item, i) => (
-              <div className="chart-item" key={i}>
+            {chartData.RTChart?.items?.slice(0, dataSize).map((item, i) => (
+              <div className="chart-item" key={item.encodeId}>
                 <div
                   className={
                     "list-item-chart " +
-                    (item.encodeId === currPlaying.songInfo.encodeId
-                      ? "active"
-                      : "")
+                    (item.encodeId === currPlaying.encodeId ? "active" : "")
                   }
                 >
                   <Media
@@ -112,7 +112,10 @@ const Chart = () => {
                     onPause={handlePause}
                     isPlaying={
                       currPlaying.isPlay &&
-                      item.encodeId === currPlaying.songInfo.encodeId
+                      item.encodeId === currPlaying.encodeId
+                    }
+                    isLoading={
+                      currPlaying.isLoading && item.encodeId === currPlaying.encodeId
                     }
                   />
                 </div>

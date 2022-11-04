@@ -59,6 +59,7 @@ const publicRoutes = [
       {
         path: "/zing-chart",
         element: <Chart />,
+        errorElement: <PageNotFound />,
       },
     ],
   },
@@ -79,13 +80,12 @@ const publicRoutes = [
       {
         path: "/follow/:nation",
         element: <FollowPage />,
-        children:[
+        children: [
           {
-            path:":id",
-            element:<NewFeeds />
-          }
-
-        ]
+            path: ":id",
+            element: <NewFeeds />,
+          },
+        ],
       },
     ],
   },
