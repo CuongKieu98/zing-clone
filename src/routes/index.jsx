@@ -10,6 +10,7 @@ import FollowPage from "../pages/FollowPage";
 import NewFeeds from "../components/new-feeds/NewFeeds";
 import PlayingBar from "../components/now-playing-bar/PlayingBar";
 import Profile from "../pages/Profile";
+import NewReleasePage from "../pages/NewReleasePage";
 
 const Layout = () => {
   return (
@@ -86,6 +87,17 @@ const publicRoutes = [
             element: <NewFeeds />,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: "/new-release",
+    element: <Layout />,
+    children: [
+      {
+        path: "/new-release",
+        element: <NewReleasePage />,
+        errorElement: <PageNotFound />,
       },
     ],
   },

@@ -98,7 +98,7 @@ const MediaLeft = ({
         <div className="info">
           <div className="title-wrapper">
             <span className="title">
-              <span>{item.title}</span>
+              <span>{item.title ? item.title : ""}</span>
               {item.streamingStatus === 2 && <img src={images.vip} alt="" />}
             </span>
           </div>
@@ -119,7 +119,7 @@ const MediaContent = ({ item, rank, releaseDate, type }) => {
     <div className="media-content">
       {type === LIST_TYPE.ALBUM ? (
         <div className="album-info">
-          <span>{item.album.title}</span>
+          <span>{item.album?.title}</span>
         </div>
       ) : (
         <>

@@ -11,6 +11,7 @@ const NewRelease = ({ data }) => {
     setTabActive(val);
   };
 
+
   return (
     <>
       <div className="new-release">
@@ -18,13 +19,13 @@ const NewRelease = ({ data }) => {
           className={tabActive === 1 ? "active" : ""}
           onClick={(e) => handleChangeTab(1)}
         >
-          Bài hát
+          Việt Nam
         </Button>
         <Button
           className={tabActive === 2 ? "active" : ""}
           onClick={() => handleChangeTab(2)}
         >
-          Album
+          Quốc Tế
         </Button>
       </div>
       {tabActive === 1 ? (

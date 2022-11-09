@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { actionSelector } from "../../redux/selectors/selector";
 import { useLayoutEffect } from "react";
+import { getApiSong } from "../../utils/actionUtils";
 
 const RightBar = (props) => {
   const { currAudio } = props;
@@ -27,50 +28,36 @@ const RightBar = (props) => {
 
   const [listdata, setListdata] = useState(currAudio.playingList);
 
-
   const dispatch = useDispatch();
 
   const handlePause = () => {
     dispatch(togglePlay(false));
   };
 
-  const handlePlay = async (data, i) => {
+  const handlePlay = (data, i) => {
     if (currAudio && currAudio.encodeId === data.encodeId)
       return dispatch(togglePlay(true));
-    dispatch(setCurrId(data.encodeId));
-    dispatch(setLoadingApi(true));
-    const response = await getSong(data.encodeId);
-    if (response.err !== 0) {
-      return toast(response.msg, {
-        type: "error",
-        hideProgressBar: true,
-      });
-    }
-    dispatch(
-      setSongInfo({
-        src: response.data,
-        info:data
-      })
-    );
-    dispatch(setLoadingApi(false));
-    dispatch(togglePlay(true));
+    getApiSong(data,dispatch);
   };
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
-    const dataR = [...listdata.list]
+    const dataR = [...listdata.list];
     const { source, destination } = result;
     const [remove] = dataR.splice(source.index, 1);
     const newData = dataR.splice(destination.index, 0, remove);
-    dispatch(setPlayingList({
-      type:listdata.type,
-      list:dataR
-    }))
+    dispatch(
+      setPlayingList({
+        type: listdata.type,
+        list: dataR,
+      })
+    );
   };
 
   useLayoutEffect(() => {
     setListdata(currAudio.playingList);
   }, [currAudio.playingList]);
+
 
   return (
     <div className="right-bar__container">
@@ -131,9 +118,7 @@ const RightBar = (props) => {
                                       item={item}
                                       isOnlyShowMore={true}
                                       customImg="is-40"
-                                      onPlay={() =>
-                                        handlePlay(item, i)
-                                      }
+                                      onPlay={() => handlePlay(item, i)}
                                       onPause={handlePause}
                                       isPlaying={
                                         currAudio.isPlay &&
