@@ -44,3 +44,10 @@ export const toggleRightBar = (isOpen) => {
     payload: isOpen,
   };
 };
+//
+export const setDataTheme = (id) => {
+  return {
+    type: "SET_THEME",
+    payload: id,
+  };
+};

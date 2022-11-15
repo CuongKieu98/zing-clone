@@ -36,5 +36,10 @@ const SECTION_TYPE = {
 
 }
 
+const RELEASE_TYPE = {
+    VPOP:"vPop",
+    OTHERS:"others"
+} 
 
-export {SECTION_ID,SECTION_TYPE}
+
+export {SECTION_ID,SECTION_TYPE,RELEASE_TYPE}

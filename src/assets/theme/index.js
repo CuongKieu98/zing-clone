@@ -1,4 +1,5 @@
 const themes = {
+    zmaBg : require('../theme/zma-bg.svg').default,
     lodon : require('../theme/London-thumb.png'),
     lightdart : require('../theme/dynamic-light-dark-1.jpg'),
     blue : require('../theme/dynamic-blue.jpg'),
@@ -17,7 +18,6 @@ const themes = {
     //bg
     lodonBg : require('../theme/London-bg.jpg'),
     xoneBg : require('../theme/xone-bg.jpg'),
-    zmaBg : require('../theme/zma-bg.svg').default,
     eiffelBg : require('../theme/eiffel-bg.jpg'),
     jackBg : require('../theme/jack-bg.jpg'),
     iuBg : require('../theme/iu-bg.jpg'),

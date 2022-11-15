@@ -12,6 +12,7 @@ export const getApiSong = async (data, dispatch) => {
   dispatch(setLoadingApi(true));
   const res = await getSong(data.encodeId);
   if (res.err !== 0) {
+    dispatch(setLoadingApi(false));
     return toast(res.msg, {
       type: "error",
       hideProgressBar: true,
@@ -26,4 +27,3 @@ export const getApiSong = async (data, dispatch) => {
   dispatch(setLoadingApi(false));
   dispatch(togglePlay(true));
 };
-

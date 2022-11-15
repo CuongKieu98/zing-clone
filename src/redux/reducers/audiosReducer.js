@@ -1,7 +1,7 @@
 const initialState = {
   isPlay: false,
   isLoading: false,
-  encodeId: "Z6WZD78I",
+  encodeId: "",
   songInfo: {
     src: {
       128: "https://vnso-zn-16-tf-mp3-s1-m-zmp3.zmdcdn.me/2fdc3ed43594dcca8585/9134641035892817207?authen=exp=1667543875~acl=/2fdc3ed43594dcca8585/*~hmac=bf11fa1373e8b62e70d649a21645c479",

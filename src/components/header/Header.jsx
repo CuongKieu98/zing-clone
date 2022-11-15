@@ -18,6 +18,8 @@ import { THEME_2, THEME_ARTIST, THEME_DYNAMIC } from "../../consts/THEME";
 import Card from "../card/Card";
 import Modal from "../modal/Modal";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { setDataTheme } from "../../redux/actions/actions";
 
 const Header = () => {
   const headerRef = useRef(null);
@@ -215,13 +217,24 @@ const RightHeader = ({ onOpenModal }) => {
 };
 
 const ModalTheme = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const [currTheme, setCurrTheme] = useState("zma");
+
+  const setTheme = (theme) => {
+    setCurrTheme(theme.id);
+    localStorage.setItem("theme", JSON.stringify(theme));
+    dispatch(setDataTheme(theme))
+    onClose();
+  }
+
+
   return (
     <div className="container-theme">
       <h3 className="title pad-rl-7">Dynamic</h3>
       <div className="columns">
         {THEME_DYNAMIC.map((item, i) => (
           <div className="column theme-modal mb-2" key={i}>
-            <Card image={item.img} className="" customImg="" showAction={false}>
+            <Card image={item.img} className="" customImg="" showAction={false} onClick={() => setTheme(item)}>
               <div className="title">{item.title}</div>
             </Card>
           </div>
@@ -231,7 +244,7 @@ const ModalTheme = ({ onClose }) => {
       <div className="columns">
         {THEME_2.map((item, index) => (
           <div className="column theme-modal mb-2" key={index}>
-            <Card image={item.img} className="" customImg="" showAction={false}>
+            <Card image={item.img} className="" customImg="" showAction={false} onClick={() => setTheme(item)}>
               <div className="title">{item.title}</div>
             </Card>
           </div>
@@ -247,6 +260,7 @@ const ModalTheme = ({ onClose }) => {
               customImg=""
               content={item.title}
               showAction={false}
+              onClick={() => setTheme(item)}
             >
               <div className="title">{item.title}</div>
             </Card>

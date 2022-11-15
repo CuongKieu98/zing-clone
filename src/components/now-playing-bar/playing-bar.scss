@@ -253,6 +253,7 @@
           font-size: 16px;
           padding: 5px;
           border-radius: 50%;
+          color: var(--player-text);
         }
       }
       .next:hover {
@@ -283,6 +284,15 @@
           color: #fff;
         }
       }
+    }
+    &.is-none{
+      transform: translateY(100%);
+
+    }
+    &.is-data{
+      transform: translateY(0);
+    transition: transform .5s ease;
+
     }
   }
   .right-bar {
@@ -465,5 +475,30 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+//response
+.now-playing-bar{
+  .player-controls{
+    @include mobile{
+      bottom: 45px;
+      height: 45px;
+      &__container{
+        height: 100%;
+        .media-item{
+          &__left{
+            .img-control{
+              height: 40px !important;
+              width: 40px !important;
+              border-radius: 999px !important;
+            }
+          }
+          &__right{
+            display: none;
+          }
+        }
+      }
+    }
   }
 }

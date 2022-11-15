@@ -53,7 +53,7 @@ const THEME_DYNAMIC = [
     },
     {
       id: "zma",
-      background: themes.zmabg,
+      background: themes.zmaBg,
       img: themes.zma,
       title: "Zing Music Awards",
       class: "theme-dynamic-zma",

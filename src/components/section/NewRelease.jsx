@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setPlayingList } from "../../redux/actions/actions";
+import { getApiSong } from "../../utils/actionUtils";
 import Button from "../button/Button";
 import List from "../list/List";
 import "./section.scss";
 
 const NewRelease = ({ data }) => {
+
+  const dispatch = useDispatch();
   const [tabActive, setTabActive] = useState(1);
 
   const handleChangeTab = (val) => {
     if (val === tabActive) return;
     setTabActive(val);
   };
+
 
 
   return (
@@ -38,6 +44,7 @@ const NewRelease = ({ data }) => {
                     isOnlyShowMore={true}
                     item={item}
                     releaseDate={true}
+                    list={data.vPop}
                   />
                 </div>
               ))
@@ -52,6 +59,7 @@ const NewRelease = ({ data }) => {
                     customImg="is-60"
                     isOnlyShowMore={true}
                     item={item}
+                    list={data.others}
                     releaseDate={true}
                   />
                 </div>

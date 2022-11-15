@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import _ from "lodash";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { actionSelector } from "../../redux/selectors/selector";
 
@@ -9,6 +10,8 @@ import RightBar from "./RightBar";
 import RightControl from "./RightControl";
 const PlayingBar = () => {
   const rbarRef = useRef(null);
+
+  const playRef = useRef(null);
 
   const audioReducer = useSelector(actionSelector);
 
@@ -36,6 +39,15 @@ const PlayingBar = () => {
     }
   };
 
+  useEffect(() =>{
+    console.log(currAudio);
+    if(_.isEmpty(currAudio.encodeId)){
+      playRef.current.classList.add("is-none")
+    }else{
+      playRef.current.classList.add("is-data")
+    }
+  },[currAudio.encodeId])
+
   return (
     <div className="now-playing-bar">
       {/* righttab */}
@@ -45,7 +57,7 @@ const PlayingBar = () => {
         </div>
       ) : null}
 
-      <div className="player-controls clickable">
+      <div className="player-controls clickable" ref={playRef}>
         <div className="level player-controls__container">
           <LeftControl info={currAudio.songInfo}/>
           <CenterControl />
