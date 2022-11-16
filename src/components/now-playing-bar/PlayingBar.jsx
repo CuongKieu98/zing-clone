@@ -5,6 +5,7 @@ import { actionSelector } from "../../redux/selectors/selector";
 
 import CenterControl from "./CenterControl";
 import LeftControl from "./LeftControl";
+import NowPlaying from "./NowPlaying";
 import "./playing-bar.scss";
 import RightBar from "./RightBar";
 import RightControl from "./RightControl";
@@ -13,11 +14,15 @@ const PlayingBar = () => {
 
   const playRef = useRef(null);
 
+  const nowRef = useRef(null);
+
   const audioReducer = useSelector(actionSelector);
 
   const currAudio = audioReducer ? audioReducer.audiosReducer : null;
 
   const [rightBarOpen, setRightBarOpen] = useState(false);
+
+  const [nowPlayingOpen, setNowPlayingOpen] = useState(false);
 
   const toggleTabRight = () => {
     if (rightBarOpen) {
@@ -39,32 +44,55 @@ const PlayingBar = () => {
     }
   };
 
-  useEffect(() =>{
-    console.log(currAudio);
-    if(_.isEmpty(currAudio.encodeId)){
-      playRef.current.classList.add("is-none")
-    }else{
-      playRef.current.classList.add("is-data")
+  const toggleNowPlaying = () => {
+    if (nowPlayingOpen) {
+      nowRef.current?.classList.remove("enter");
+
+      nowRef.current?.classList.add("exit");
+
+      setTimeout(() => {
+        setNowPlayingOpen(false);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        nowRef.current?.classList?.remove("exit");
+
+        nowRef?.current?.classList?.add("enter");
+      }, 200);
+
+      setNowPlayingOpen(true);
     }
-  },[currAudio.encodeId])
+  };
+
+  useEffect(() => {
+    if (_.isEmpty(currAudio.encodeId)) {
+      playRef.current.classList.add("is-none");
+    } else {
+      playRef.current.classList.add("is-data");
+    }
+  }, [currAudio.encodeId]);
 
   return (
     <div className="now-playing-bar">
       {/* righttab */}
       {rightBarOpen ? (
         <div className="right-bar exit" ref={rbarRef}>
-          <RightBar currAudio={currAudio}/>
+          <RightBar currAudio={currAudio} />
+        </div>
+      ) : null}
+      {nowPlayingOpen ? (
+        <div className="now-play exit" ref={nowRef}>
+          <NowPlaying currAudio={currAudio} onClick={() => toggleNowPlaying()} />
         </div>
       ) : null}
 
-      <div className="player-controls clickable" ref={playRef}>
+      <div className="player-controls clickable" ref={playRef} onClick={() => toggleNowPlaying()}>
         <div className="level player-controls__container">
-          <LeftControl info={currAudio.songInfo}/>
+          <LeftControl info={currAudio.songInfo} />
           <CenterControl />
           <RightControl
             onClick={() => toggleTabRight()}
             isActive={rightBarOpen}
-
           />
         </div>
       </div>

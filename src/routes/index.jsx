@@ -11,10 +11,24 @@ import NewFeeds from "../components/new-feeds/NewFeeds";
 import PlayingBar from "../components/now-playing-bar/PlayingBar";
 import Profile from "../pages/Profile";
 import NewReleasePage from "../pages/NewReleasePage";
+import { useSelector } from "react-redux";
+import { actionSelector } from "../redux/selectors/selector";
+import { useRef } from "react";
+import _ from "lodash";
+import { useEffect } from "react";
 
 const Layout = () => {
+  const data = useSelector(actionSelector).audiosReducer;
+
+  const mainRef = useRef();
+
+  useEffect(() =>{
+    if (data.encodeId) mainRef?.current?.classList.add("is-song");
+  },[data.encodeId])
+ 
+
   return (
-    <div className="main-layout">
+    <div className="main-layout" ref={mainRef}>
       <SideBar />
       <Header />
       <div className="main-page">

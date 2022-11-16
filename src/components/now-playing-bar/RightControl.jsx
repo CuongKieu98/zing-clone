@@ -33,7 +33,7 @@ const RightControl = (props) => {
     []
   );
   return (
-    <div className="player-controls__right level-right">
+    <div className="player-controls__right level-right hide-on-mobile">
       <div className="level-item is-narrow">
         <Button className="no-bg next">
           <i className="icon ic-karaoke"></i>

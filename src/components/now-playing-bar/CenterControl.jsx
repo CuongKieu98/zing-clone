@@ -171,10 +171,10 @@ const CenterControl = () => {
     <div className="player-controls__player-bar level-center">
       <div className="level-item">
         <div className="actions">
-          <Button className="no-bg">
+          <Button className="no-bg hide-on-mobile">
             <i className="icon ic-shuffle"></i>
           </Button>
-          <Button className="no-bg" onClick={(e) => handlePrev(e)}  disabled={currIdx === 0 ? true : false}>
+          <Button className="no-bg hide-on-mobile" onClick={(e) => handlePrev(e)}  disabled={currIdx === 0 ? true : false}>
             <i className="icon ic-pre"></i>
           </Button>
           {currPlaying.isLoading ? (
@@ -197,18 +197,18 @@ const CenterControl = () => {
             <i className="icon ic-next"></i>
           </Button>
           {loop ? (
-            <Button className="no-bg is-active" onClick={(e) => handleLoop(e)}>
+            <Button className="no-bg is-active hide-on-mobile" onClick={(e) => handleLoop(e)}>
               <i className="icon ic-repeat-one"></i>
             </Button>
           ) : (
-            <Button className="no-bg" onClick={(e) => handleLoop(e)}>
+            <Button className="no-bg hide-on-mobile" onClick={(e) => handleLoop(e)}>
               <i className="icon ic-repeat"></i>
             </Button>
           )}
         </div>
       </div>
 
-      <div className="level-item mar-b-6">
+      <div className="level-item mar-b-6 hide-on-mobile">
         <span className="time-left">
           {stringUtils.formatDuration(currentTime)}
         </span>
