@@ -116,10 +116,10 @@ const Header = () => {
     <header ref={headerRef} className="header">
       <div className="level">
         <div className="level-left">
-          <Button className="no-bg">
+          <Button className="no-bg hide-on-mobile">
             <i className="icon ic-back"></i>
           </Button>
-          <Button className="no-bg">
+          <Button className="no-bg hide-on-mobile">
             <i className="icon ic-forward"></i>
           </Button>
           <form className="search">

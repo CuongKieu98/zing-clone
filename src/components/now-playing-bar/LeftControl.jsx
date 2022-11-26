@@ -4,7 +4,6 @@ import Button from "../button/Button";
 import Image from "../image/Image";
 
 const LeftControl = (props) => {
-
   const { info } = props;
 
   return (
@@ -12,26 +11,22 @@ const LeftControl = (props) => {
       <div className="level-item is-narrow w100">
         <div className="media-item">
           <div className="media-item__left">
-            <Link to="/">
-              <div className="thumb-wrapper">
-                <div className="thumb">
-                  <Image
-                    className="img-control"
-                    src={info.info.thumbnailM || info.info.thumbnail}
-                  />
-                </div>
+            <div className="thumb-wrapper">
+              <div className="thumb">
+                <Image
+                  className="img-control"
+                  src={info.info.thumbnailM || info.info.thumbnail}
+                />
               </div>
-            </Link>
+            </div>
           </div>
           <div className="media-item__center">
             <div className="is-mark level-left">
               <div className="song-info-wrap">
                 <span className="song-title-item">
-                  <Link to={"/"}>
-                    <div className="title-wrapper">
-                      <span className="item-title title">{info.info.title}</span>
-                    </div>
-                  </Link>
+                  <div className="title-wrapper">
+                    <span className="item-title title">{info.info.title}</span>
+                  </div>
                 </span>
               </div>
             </div>

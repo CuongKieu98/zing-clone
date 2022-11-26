@@ -24,7 +24,8 @@ const PlayingBar = () => {
 
   const [nowPlayingOpen, setNowPlayingOpen] = useState(false);
 
-  const toggleTabRight = () => {
+  const toggleTabRight = (e) => {
+    e.stopPropagation();
     if (rightBarOpen) {
       rbarRef.current?.classList.remove("enter");
 
@@ -49,15 +50,16 @@ const PlayingBar = () => {
       nowRef.current?.classList.remove("enter");
 
       nowRef.current?.classList.add("exit");
+      playRef.current?.classList.add("bg");
 
       setTimeout(() => {
         setNowPlayingOpen(false);
       }, 500);
     } else {
       setTimeout(() => {
-        nowRef.current?.classList?.remove("exit");
-
+        nowRef.current?.classList?.remove("exit");      
         nowRef?.current?.classList?.add("enter");
+        playRef.current?.classList.remove("bg");
       }, 200);
 
       setNowPlayingOpen(true);
@@ -86,12 +88,14 @@ const PlayingBar = () => {
         </div>
       ) : null}
 
-      <div className="player-controls clickable" ref={playRef} onClick={() => toggleNowPlaying()}>
+      <div className="player-controls clickable bg" ref={playRef} onClick={() => toggleNowPlaying()}>
         <div className="level player-controls__container">
           <LeftControl info={currAudio.songInfo} />
           <CenterControl />
           <RightControl
-            onClick={() => toggleTabRight()}
+            onClick={(e) =>
+   
+              toggleTabRight(e)}
             isActive={rightBarOpen}
           />
         </div>

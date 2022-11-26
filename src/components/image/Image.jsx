@@ -3,10 +3,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import PropTypes from "prop-types";
 
 const Image = (props) => {
-  const { src, className,width="100%",height="100%" } = props;
+  const { src, className,width="100%",height="100%" ,refI} = props;
   const classCustom = className ? className : "";
   return (
-    <figure className={classCustom}>
+    <figure className={classCustom} ref={refI}>
       <LazyLoadImage
         effect="blur"
         height={height}
