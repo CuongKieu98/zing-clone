@@ -16,6 +16,7 @@ import { actionSelector } from "../redux/selectors/selector";
 import { useRef } from "react";
 import _ from "lodash";
 import { useEffect } from "react";
+import DetailPlayListPage from "../pages/DetailPlayListPage";
 
 const Layout = () => {
   const data = useSelector(actionSelector).audiosReducer;
@@ -111,6 +112,17 @@ const publicRoutes = [
       {
         path: "/new-release",
         element: <NewReleasePage />,
+        errorElement: <PageNotFound />,
+      },
+    ],
+  },
+  {
+    path: "/play-list",
+    element: <Layout />,
+    children: [
+      {
+        path: "/play-list",
+        element: <DetailPlayListPage />,
         errorElement: <PageNotFound />,
       },
     ],

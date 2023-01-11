@@ -4,7 +4,7 @@ const initialState = {
   encodeId: "",
   songInfo: {
     src: {
-      128: "https://vnso-zn-16-tf-mp3-s1-m-zmp3.zmdcdn.me/2fdc3ed43594dcca8585/9134641035892817207?authen=exp=1667543875~acl=/2fdc3ed43594dcca8585/*~hmac=bf11fa1373e8b62e70d649a21645c479",
+      128: "",
       320: "VIP",
     },
     lyric: null,
@@ -19,6 +19,8 @@ const initialState = {
     type: "mymusic",
     list: [],
   },
+  rightBarActive: false,
+  nowPlayingActive: false,
 };
 
 const audiosReducer = (state = initialState, action) => {
@@ -43,7 +45,16 @@ const audiosReducer = (state = initialState, action) => {
         ...state,
         playingList: action.payload,
       };
-
+    case "ACTION_SET_RIGHT_ACTIVE":
+      return {
+        ...state,
+        rightBarActive: action.payload,
+      };
+    case "ACTION_SET_NOW_PLAYING_ACTIVE":
+      return {
+        ...state,
+        nowPlayingActive: action.payload,
+      };
     case "ACTION_SET_LOADINGAPI":
       return {
         ...state,

@@ -4,11 +4,11 @@ import Button from "../button/Button";
 import Image from "../image/Image";
 
 const LeftControl = (props) => {
-  const { info } = props;
+  const { info,onClick } = props;
 
   return (
-    <div className="player-controls-left level-left">
-      <div className="level-item is-narrow w100">
+    <div className="player-controls-left level-left" >
+      <div className="level-item is-narrow w100" onClick={onClick}>
         <div className="media-item">
           <div className="media-item__left">
             <div className="thumb-wrapper">

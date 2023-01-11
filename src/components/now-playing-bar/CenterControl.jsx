@@ -155,10 +155,6 @@ const CenterControl = () => {
     audioRef.current.currentTime = (time * audioRef.current.duration) / 100;
   };
 
-  // useEffect(() => {
-  //   setPlay(currPlaying.isPlay)
-  // },[currPlaying.isPlay])
-
   useEffect(() => {
     if (currPlaying.isPlay) {
       audioRef.current.play();
@@ -171,10 +167,10 @@ const CenterControl = () => {
     <div className="player-controls__player-bar level-center">
       <div className="level-item">
         <div className="actions">
-          <Button className="no-bg hide-on-mobile">
+          <Button className="no-bg hide-action">
             <i className="icon ic-shuffle"></i>
           </Button>
-          <Button className="no-bg hide-on-mobile" onClick={(e) => handlePrev(e)}  disabled={currIdx === 0 ? true : false}>
+          <Button className="no-bg hide-action" onClick={(e) => handlePrev(e)}  disabled={currIdx === 0 ? true : false}>
             <i className="icon ic-pre"></i>
           </Button>
           {currPlaying.isLoading ? (
@@ -184,11 +180,11 @@ const CenterControl = () => {
               </i>
             </div>
           ) : currPlaying.isPlay ? (
-            <Button className="no-bg btn-play" onClick={(e) => handlePause(e)}>
+            <Button className="no-bg btn-play " onClick={(e) => handlePause(e)}>
               <i className="icon ic-pause-circle-outline"></i>
             </Button>
           ) : (
-            <Button className="no-bg btn-play" onClick={(e) => handlePlay(e)}>
+            <Button className="no-bg btn-play " onClick={(e) => handlePlay(e)}>
               <i className="icon ic-play-circle-outline"></i>
             </Button>
           )}
@@ -197,18 +193,18 @@ const CenterControl = () => {
             <i className="icon ic-next"></i>
           </Button>
           {loop ? (
-            <Button className="no-bg is-active hide-on-mobile" onClick={(e) => handleLoop(e)}>
+            <Button className="no-bg is-active hide-action" onClick={(e) => handleLoop(e)}>
               <i className="icon ic-repeat-one"></i>
             </Button>
           ) : (
-            <Button className="no-bg hide-on-mobile" onClick={(e) => handleLoop(e)}>
+            <Button className="no-bg hide-action" onClick={(e) => handleLoop(e)}>
               <i className="icon ic-repeat"></i>
             </Button>
           )}
         </div>
       </div>
 
-      <div className="level-item mar-b-6 hide-on-mobile">
+      <div className="level-item mar-b-6 duration">
         <span className="time-left">
           {stringUtils.formatDuration(currentTime)}
         </span>

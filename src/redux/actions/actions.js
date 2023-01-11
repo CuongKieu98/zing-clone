@@ -38,16 +38,25 @@ export const setLoadingApi= (value) => {
 
 
 //
-export const toggleRightBar = (isOpen) => {
-  return {
-    type: "TOGGLE_RIGHTBAR",
-    payload: isOpen,
-  };
-};
+
 //
 export const setDataTheme = (id) => {
   return {
     type: "SET_THEME",
     payload: id,
+  };
+};
+
+export const activeRightBar = (isActive) => {
+  return {
+    type: "ACTION_SET_RIGHT_ACTIVE",
+    payload: isActive,
+  };
+};
+
+export const activeNowPlaying = (isActive) => {
+  return {
+    type: "ACTION_SET_NOW_PLAYING_ACTIVE",
+    payload: isActive,
   };
 };

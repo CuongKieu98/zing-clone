@@ -15,8 +15,36 @@
     -ms-user-select: none;
     user-select: none;
     transition: background-color 0.5s ease;
+    background-color: var(--layout-bg);
+
     &.bg {
-      background-color: var(--layout-bg);
+      --player-text: #fff;   
+      background-color: transparent;
+      background-image: none;
+      .player-controls__player-bar {
+        display: flex;
+        flex-direction: column-reverse;
+        max-width: none;
+      }
+      .player-controls__container {
+        background-color: transparent;
+        background-image: none;
+        cursor: default;
+        border-top: none;
+      }
+      @include mobile {
+        height: 100px !important;
+        bottom: 0;
+        .player-controls-left {
+          display: none;
+        }
+        .duration{
+          display: flex;
+        }
+        .hide-action{
+          display: inline-block !important;
+        }
+      }
     }
     &__container {
       height: 90px;
@@ -157,6 +185,11 @@
     &__player-bar {
       flex-grow: 1;
       max-width: 40vw;
+      .duration{
+        @include mobile{
+          display: none;
+        }
+      }
       .actions {
         display: flex;
         flex-shrink: 0;
@@ -190,6 +223,11 @@
 
               filter: brightness(0.9);
             }
+          }
+        }
+        @include mobile{
+          .hide-action{
+            display: none;
           }
         }
         .pie-loading {
@@ -306,11 +344,11 @@
     background-color: var(--queue-player-popup-bg);
     &.exit {
       transform: translateX(100%);
-      transition: transform 0.6s ease-out;
+      transition: transform 0.5s ease-out;
     }
     &.enter {
       transform: none;
-      transition: transform 0.6s ease-out;
+      transition: transform 0.5s ease-out;
     }
     &__container {
       height: calc(100vh - 90px);
@@ -583,10 +621,10 @@
               .img-now {
                 height: 240px;
                 border-radius: 999px;
-                transition:0.5s ease;
+                transition: 0.5s ease;
                 &.playing {
                   border-radius: 50%;
-                  img {        
+                  img {
                     border-radius: 50%;
                     -webkit-animation-duration: 26s;
                     animation-duration: 26s;
@@ -601,8 +639,8 @@
                 img {
                   border-radius: 999px;
                   transition: 0.5s ease;
-                  -webkit-animation-duration: .5s;
-                  animation-duration: .5s;
+                  -webkit-animation-duration: 0.5s;
+                  animation-duration: 0.5s;
                   -webkit-animation-name: spin-off;
                   animation-name: spin-off;
                   display: flex;

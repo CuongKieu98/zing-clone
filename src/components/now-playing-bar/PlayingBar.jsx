@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React, { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { activeNowPlaying, activeRightBar } from "../../redux/actions/actions";
 import { actionSelector } from "../../redux/selectors/selector";
 
 import CenterControl from "./CenterControl";
@@ -10,6 +12,8 @@ import "./playing-bar.scss";
 import RightBar from "./RightBar";
 import RightControl from "./RightControl";
 const PlayingBar = () => {
+  const dispatch = useDispatch();
+
   const rbarRef = useRef(null);
 
   const playRef = useRef(null);
@@ -20,49 +24,43 @@ const PlayingBar = () => {
 
   const currAudio = audioReducer ? audioReducer.audiosReducer : null;
 
-  const [rightBarOpen, setRightBarOpen] = useState(false);
-
-  const [nowPlayingOpen, setNowPlayingOpen] = useState(false);
-
   const toggleTabRight = (e) => {
     e.stopPropagation();
-    if (rightBarOpen) {
+    if (currAudio.rightBarActive) {
       rbarRef.current?.classList.remove("enter");
 
       rbarRef.current?.classList.add("exit");
 
       setTimeout(() => {
-        setRightBarOpen(false);
-      }, 600);
+        dispatch(activeRightBar(false));
+      }, 500);
     } else {
       setTimeout(() => {
         rbarRef.current?.classList?.remove("exit");
 
         rbarRef?.current?.classList?.add("enter");
       }, 200);
-
-      setRightBarOpen(true);
+      dispatch(activeRightBar(true));
     }
   };
 
   const toggleNowPlaying = () => {
-    if (nowPlayingOpen) {
+    if (currAudio.nowPlayingActive) {
       nowRef.current?.classList.remove("enter");
-
       nowRef.current?.classList.add("exit");
-      playRef.current?.classList.add("bg");
+      playRef.current?.classList.remove("bg");
 
       setTimeout(() => {
-        setNowPlayingOpen(false);
+        dispatch(activeNowPlaying(false));
       }, 500);
     } else {
       setTimeout(() => {
-        nowRef.current?.classList?.remove("exit");      
+        nowRef.current?.classList?.remove("exit");
         nowRef?.current?.classList?.add("enter");
-        playRef.current?.classList.remove("bg");
+        playRef.current?.classList.add("bg");
       }, 200);
+      dispatch(activeNowPlaying(true));
 
-      setNowPlayingOpen(true);
     }
   };
 
@@ -74,29 +72,35 @@ const PlayingBar = () => {
     }
   }, [currAudio.encodeId]);
 
+ 
+
   return (
     <div className="now-playing-bar">
       {/* righttab */}
-      {rightBarOpen ? (
+      {currAudio.rightBarActive ? (
         <div className="right-bar exit" ref={rbarRef}>
           <RightBar currAudio={currAudio} />
         </div>
       ) : null}
-      {nowPlayingOpen ? (
+      {currAudio.nowPlayingActive ? (
         <div className="now-play exit" ref={nowRef}>
-          <NowPlaying currAudio={currAudio} onClick={() => toggleNowPlaying()} />
+          <NowPlaying
+            currAudio={currAudio}
+            onClick={() => toggleNowPlaying()}
+          />
         </div>
       ) : null}
 
-      <div className="player-controls clickable bg" ref={playRef} onClick={() => toggleNowPlaying()}>
+      <div
+        className="player-controls clickable"
+        ref={playRef}
+      >
         <div className="level player-controls__container">
-          <LeftControl info={currAudio.songInfo} />
+          <LeftControl info={currAudio.songInfo} onClick={() => toggleNowPlaying()}/>
           <CenterControl />
           <RightControl
-            onClick={(e) =>
-   
-              toggleTabRight(e)}
-            isActive={rightBarOpen}
+            onClick={(e) => toggleTabRight(e)}
+            isActive={currAudio.rightBarActive}
           />
         </div>
       </div>
